@@ -1,5 +1,5 @@
 var Webpack        = require('webpack')
-var webpack_config = require('./webpack')
+var webpack_config = require('./webpack.config')
 
 module.exports = function (config) {
   config.set({
@@ -14,13 +14,11 @@ module.exports = function (config) {
     logLevel: config.LOG_ERROR,
 
     files: [
-      '../app/**/__tests__/*.test.js*',
-      '../lib/**/__tests__/*.test.js*'
+      './src/**/__tests__/*.test.js*'
     ],
 
     preprocessors: {
-      '../app/**/__tests__/*.js*': [ 'webpack', 'sourcemap' ],
-      '../lib/**/__tests__/*.js*': [ 'webpack', 'sourcemap' ]
+      './src/**/__tests__/*.js*': [ 'webpack', 'sourcemap' ]
     },
 
     reporters: [ 'mocha' ],
@@ -40,5 +38,6 @@ module.exports = function (config) {
     webpackServer: {
       noInfo: true
     }
+
   })
 }

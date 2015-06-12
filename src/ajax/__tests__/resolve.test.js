@@ -1,4 +1,4 @@
-import resolve from '../resolve'
+let resolve = require('../resolve')
 
 describe('AJAX resolve', function() {
 
