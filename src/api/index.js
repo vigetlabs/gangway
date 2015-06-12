@@ -1,20 +1,13 @@
-/**
- * API
- *
- * Abstracts away API endpoint specifics into a JavaScript DSL.
- * - Keys correlate to objects defined in ./endpoints.
- * - Values correspond to XHR request building functions using superagent
- */
+let Bootstrap = require('./bootstrap')
 
-import bootstrap from './bootstrap'
-import resources from './resources'
+function API(baseURL, resources) {
+  this.baseURL = baseURL
+  Object.assign(this, Bootstrap(resources, this))
+}
 
-/**
- * Create a utility for resolving data API endpoints.
- */
-const API = {
+API.prototype = {
   toString() {
-    return process.env.CLIENT_API
+    return this.baseURL
   },
 
   /**
@@ -25,4 +18,4 @@ const API = {
   }
 }
 
-export default bootstrap(resources, API)
+module.exports = API

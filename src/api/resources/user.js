@@ -5,21 +5,21 @@
 export default {
   create: {
     method : 'post',
-    path   : 'org/users/new'
+    path   : 'users'
   },
 
   read: {
     method : 'get',
-    path   : 'org/users'
+    path   : 'users'
   },
 
   update: {
     method : 'post',
-    path   : 'org/users/edit'
+    path   : 'users'
   },
 
   enable: {
     method : 'post',
-    path   : 'org/users/enabled'
+    path   : 'users'
   }
 }

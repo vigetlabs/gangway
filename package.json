@@ -1,7 +1,7 @@
 {
-  "name": "endpoint",
+  "name": "gangway",
   "version": "0.0.0",
-  "description": "An API abstraction layer",
+  "description": "A client-side API abstraction layer",
   "main": "src/index.js",
   "scripts": {
     "test": "karma start --single-run"
@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/vigetlabs/endpoint.git"
+    "url": "git://github.com/vigetlabs/gangway.git"
   },
   "dependencies": {
     "axios": "~0.5"

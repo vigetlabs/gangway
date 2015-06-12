@@ -1,6 +1,6 @@
-# Endpoint
+# gangway
 
-An api abstraction layer.
+A client-side API abstraction layer
 
 TODO:
 
