@@ -1,0 +1,35 @@
+{
+  "name": "endpoint",
+  "version": "0.0.0",
+  "description": "An API abstraction layer",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "karma start --single-run"
+  },
+  "author": "Nate Hunzaker",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vigetlabs/endpoint.git"
+  },
+  "dependencies": {
+    "axios": "~0.5"
+  },
+  "devDependencies": {
+    "babel-core": "~5",
+    "babel-loader": "~5",
+    "istanbul": "~0.3",
+    "istanbul-instrumenter-loader": "~0.1",
+    "karma": "~0.12",
+    "karma-cli": "~0.0",
+    "karma-coverage": "~0.3",
+    "karma-firefox-launcher": "~0.1",
+    "karma-mocha": "~0.1",
+    "karma-mocha-reporter": "~1.0",
+    "karma-sinon-chai": "~1.0",
+    "karma-sourcemap-loader": "~0.3",
+    "karma-webpack": "~1.5",
+    "mocha": "^2.2.1",
+    "webpack": "^1.9.10"
+  }
+}
