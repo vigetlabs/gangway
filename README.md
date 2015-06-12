@@ -7,7 +7,7 @@ TODO:
 Now, really go into detail here. What does this project do? Why does
 it exist? What goals does this project aspire to achieve?
 
-**Badges, Travis? CircleCI? Place them here**
+[![Circle CI](https://circleci.com/gh/vigetlabs/gangway.svg?style=svg&circle-token=d7c29c3bd61f3c3d671d1ba02841eb0c174d311a)](https://circleci.com/gh/vigetlabs/gangway)
 
 ## Overview
 
