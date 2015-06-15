@@ -1,15 +1,20 @@
 let Gangway = require('../src')
 
-module.exports = Gangway({
+let API = Gangway({
+  baseURL: 'http://example.com',
+  headers: {
+    'x-api-key': 'asdf'
+  }
+})
+
+API.route({
   users: {
     read: {
-      description : 'The main endpoint',
-      method      : 'GET',
-      path        : '/',
-      headers     : {
-        'x-user-token': 'asdfasdf'
-      }
+      method : 'GET',
+      path   : '/users/{user_id}'
     },
     mock: { foo: 'bar' }
   }
-])
+})
+
+module.exports = API

@@ -1,6 +1,8 @@
-module.exports = function (base, path) {
+let template = require('./template')
+
+module.exports = function (base, path, body) {
   base = base.replace(/\/$/, '')
   path = path.replace(/^\//, '')
 
-  return base + '/' + path
+  return template(base + '/' + path, body)
 }

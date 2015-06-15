@@ -17,7 +17,7 @@ module.exports = function(config, overrides) {
     return Promise.resolve(options.mock)
   }
 
-  var message = Request(options.method, url(options.baseURL, options.path))
+  var message = Request(options.method, url(options.baseURL, options.path, options.body))
 
   message.send(options.body)    // body parameters
          .query(options.query)  // query parameters

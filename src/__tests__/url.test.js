@@ -13,4 +13,9 @@ describe('url', function() {
   it ('handles both base and path urls with slashes', function() {
     url('http://foobar.com', 'path').should.equal('http://foobar.com/path')
   })
+
+  it ('replaces templated url params', function() {
+    let location = url('http://foobar.com', '/user/{ id }', { id: 10 })
+    location.should.equal('http://foobar.com/user/10')
+  })
 })
