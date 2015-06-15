@@ -3,11 +3,12 @@ var Request = require('superagent')
 var url     = require('./url')
 
 let defaults = {
-  body    : {},
-  headers : {},
-  method  : 'GET',
-  path    : '',
-  type    : 'application/json'
+  body       : {},
+  headers    : {},
+  method     : 'GET',
+  path       : '',
+  type       : 'application/json',
+  onResponse : data => data
 }
 
 module.exports = function(config, overrides) {
@@ -28,5 +29,5 @@ module.exports = function(config, overrides) {
     message.end(function(err, response) {
       return err ? reject(err) : resolve(response.body)
     })
-  })
+  }).then(config.onResponse)
 }
