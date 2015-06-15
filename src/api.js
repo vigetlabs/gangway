@@ -1,5 +1,5 @@
 let ajax  = require('./ajax')
-let remap = require('./remap')
+let route = require('./route')
 
 module.exports = function (config, routes) {
 
@@ -19,13 +19,8 @@ module.exports = function (config, routes) {
       return config.baseURL
     },
 
-    route(routes={}) {
-      return remap(routes, function(resource) {
-        // For each endpoint (create, read, update, delete...)
-        return remap(resource, function(options) {
-          return API.ajax.bind(API, options)
-        })
-      }, API)
+    route(routes) {
+      return route(API, routes)
     }
 
   }
