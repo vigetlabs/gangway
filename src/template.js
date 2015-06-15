@@ -5,6 +5,7 @@ module.exports = function (string, params={}) {
     if (match in params === false) {
       throw TypeError(`Parameter ${ match } was not provided in body option`)
     }
+
     return params[match]
   })
 }
