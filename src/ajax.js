@@ -3,7 +3,8 @@ var Request = require('superagent')
 var url     = require('./url')
 
 let defaults = {
-  params     : {},
+  body       : undefined,
+  params     : undefined,
   headers    : {},
   method     : 'GET',
   path       : '',
@@ -18,7 +19,8 @@ module.exports = function(config, overrides) {
     return Promise.resolve(options.mock)
   }
 
-  var message = Request(options.method, url(options.baseURL, options.path, options.params))
+  let location = url(options.baseURL, options.path, options.params || options.body)
+  var message  = Request(options.method, location)
 
   message.send(options.params)  // body parameters
          .query(options.query)  // query parameters

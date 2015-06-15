@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.0
+
+### Breaking Changes
+
+- `params` option no longer represents body, however defaults to it
+
 ## 0.3.0
 
 ### Breaking Changes

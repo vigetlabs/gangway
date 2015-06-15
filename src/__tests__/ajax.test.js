@@ -42,6 +42,20 @@ describe('ajax', function() {
     }).catch(done)
   })
 
+  it ('can convert bindings using params', function(done) {
+    ajax({ baseURL: window.location.origin }, {
+      path: '/base/test/{ path }.json',
+      params: { path: 'response'}
+    }).nodeify(done)
+  })
+
+  it ('falls back on the `body` param if no params are given', function(done) {
+    ajax({ baseURL : window.location.origin }, {
+      path : '/base/test/{ path }.json',
+      body : { path: 'response' }
+    }).nodeify(done)
+  })
+
   it ('can be converted into a node callback', function(done) {
     ajax({ baseURL: window.location.origin }, {
       path: '/base/test/response.json'
