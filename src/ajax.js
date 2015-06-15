@@ -29,5 +29,5 @@ module.exports = function(config, overrides) {
     message.end(function(err, response) {
       return err ? reject(err) : resolve(response.body)
     })
-  }).then(config.onResponse)
+  }).then(options.onResponse)
 }

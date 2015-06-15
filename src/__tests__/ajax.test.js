@@ -32,9 +32,33 @@ describe('ajax', function() {
     }).catch(done)
   })
 
+  it ('can operate as a promise a response', function(done) {
+    ajax({
+      baseURL : window.location.origin,
+      path    : '/base/test/response.json'
+    }).then(function(data) {
+      data.name.should.equal('Gangway')
+      done()
+    }).catch(done)
+  })
+
   it ('can be converted into a node callback', function(done) {
     ajax({ baseURL: window.location.origin }, {
       path: '/base/test/response.json'
     }).nodeify(done)
+  })
+
+  it ('can parse a response', function(done) {
+    ajax({
+      baseURL: window.location.origin,
+      onResponse(data) {
+        return 'CAUGHT'
+      }
+    }, {
+      path: '/base/test/response.json'
+    }).then(function(data) {
+      data.should.equal('CAUGHT')
+      done()
+    }).catch(done)
   })
 })
