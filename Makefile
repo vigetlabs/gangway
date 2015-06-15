@@ -8,7 +8,7 @@ JS      = $(shell find src -name '*.js' ! -path '*/__tests__/*')
 .PHONY: clean test test-watch release example
 .FORCE: javascript-min
 
-build: package.json README.md LICENSE.md docs javascript javascript-min
+build: package.json README.md LICENSE.md javascript javascript-min
 	@make audit
 
 $(DIST):
@@ -20,15 +20,12 @@ $(DIST):
 package.json: $(DIST)
 	@node -p 'p=require("./package");p.private=undefined;p.scripts=p.devDependencies=undefined;JSON.stringify(p,null,2)' > $(DIST)/package.json
 
-docs: $(DIST)
-	cp -r $@ $^
-
 javascript: $(DIST)
 	@$(BABEL) -d $^ $(JS)
 
 javascript-min: javascript
 	@NODE_ENV=production \
-	$(WEBPACK) -p dist/src/Microcosm.js $(DIST)/microcosm.build.js \
+	$(WEBPACK) -p dist/src/api.js $(DIST)/gangway.build.js \
 	--devtool sourcemap --output-library-target commonjs2 \
 	--optimize-minimize --optimize-occurence-order --optimize-dedupe
 
@@ -47,9 +44,9 @@ clean:
 
 audit:
 	@echo "Compressed Size:"
-	@cat $(DIST)/microcosm.build.js | wc -c
+	@cat $(DIST)/gangway.build.js | wc -c
 	@echo "Gzipped Size:"
-	@gzip -c $(DIST)/microcosm.build.js | wc -c
+	@gzip -c $(DIST)/gangway.build.js | wc -c
 
 test:
 	NODE_ENV=test $(KARMA) start --single-run

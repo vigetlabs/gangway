@@ -13,7 +13,7 @@ module.exports = {
   ],
 
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json']
+    extensions: ['', '.js', '.json']
   },
 
   node: {
@@ -24,7 +24,7 @@ module.exports = {
   module: {
     loaders: [
       {
-        test    : /\.jsx?$/,
+        test    : /\.js$/,
         exclude : /node_modules/,
         loader  : 'babel'
       },

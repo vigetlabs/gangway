@@ -11,17 +11,16 @@ module.exports = function (config) {
 
     frameworks: [ 'mocha', 'sinon-chai' ],
 
-    logLevel: config.LOG_ERROR,
-
     files: [
-      './src/**/__tests__/*.test.js*'
+      { pattern: 'test/*.json', watched: false, included: false, served: true },
+      './src/**/__tests__/*.test.js*',
     ],
 
     preprocessors: {
       './src/**/__tests__/*.js*': [ 'webpack', 'sourcemap' ]
     },
 
-    reporters: [ 'mocha' ],
+    reporters: [ 'mocha', 'coverage' ],
 
     client: {
       mocha: {
@@ -29,10 +28,35 @@ module.exports = function (config) {
       }
     },
 
+    coverageReporter: {
+      dir    : process.env.CIRCLE_ARTIFACTS || 'coverage',
+      type   : 'html',
+      subdir : '.'
+    },
+
     webpack: {
-      devtool: 'inline-source-map',
-      resolve: webpack_config.resolve,
-      module: webpack_config.module
+      devtool : 'inline-source-map',
+      resolve : webpack_config.resolve,
+
+      module: {
+        noParse: webpack_config.module.noParse,
+        loaders: [{
+          test    : /\.jsx*$/,
+          exclude : /node_modules/,
+          loader  : 'babel',
+          query   : {
+            auxiliaryCommentBefore: "istanbul ignore next",
+            optional: ["runtime"]
+          }
+        }],
+        postLoaders: [
+          {
+            test: /\.jsx*$/,
+            exclude: /(__tests__|node_modules)\//,
+            loader: 'istanbul-instrumenter'
+          }
+        ]
+      }
     },
 
     webpackServer: {

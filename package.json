@@ -2,9 +2,10 @@
   "name": "gangway",
   "version": "0.0.0",
   "description": "A client-side API abstraction layer",
-  "main": "src/index.js",
+  "main": "src/api.js",
   "scripts": {
-    "test": "karma start --single-run"
+    "test": "karma start --single-run",
+    "test:watch": "karma start"
   },
   "author": "Nate Hunzaker",
   "license": "MIT",
@@ -13,24 +14,27 @@
     "url": "git://github.com/vigetlabs/gangway.git"
   },
   "dependencies": {
-    "axios": "~0.5"
+    "promise": "~7.0",
+    "superagent": "~1.2"
   },
   "devDependencies": {
+    "babel": "~5.5",
     "babel-core": "~5",
     "babel-loader": "~5",
-    "babel-plugin-object-assign": "^1.1.0",
+    "babel-plugin-object-assign": "~1.1",
+    "babel-runtime": "^5.5.8",
     "istanbul": "~0.3",
     "istanbul-instrumenter-loader": "~0.1",
     "karma": "~0.12",
     "karma-chrome-launcher": "~0.1",
     "karma-cli": "~0.0",
-    "karma-coverage": "~0.3",
+    "karma-coverage": "~0.4",
     "karma-mocha": "~0.1",
     "karma-mocha-reporter": "~1.0",
     "karma-sinon-chai": "~1.0",
     "karma-sourcemap-loader": "~0.3",
     "karma-webpack": "~1.5",
-    "mocha": "^2.2.1",
-    "webpack": "^1.9.10"
+    "mocha": "~2.2",
+    "webpack": "~1.9"
   }
 }
