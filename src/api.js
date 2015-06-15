@@ -1,19 +1,34 @@
-var ajax  = require('./ajax')
-var remap = require('./remap')
+let ajax  = require('./ajax')
+let remap = require('./remap')
 
-module.exports = function (baseURL, resources={}) {
-  var API = {
-    ajax : ajax,
-    toString() {
-      return baseURL
-    }
+module.exports = function (config, routes) {
+
+  if (!config) {
+    throw new TypeError('Please provide a configuration object as the first argument.')
   }
 
-  // For each resource (users, posts...)
-  return remap(resources, function(resource) {
-    // For each endpoint (create, read, update, delete...)
-    return remap(resource, function(options) {
-      return API.ajax.bind(API, baseURL, options)
-    })
-  }, API)
+  if ('baseURL' in config === false) {
+    throw new TypeError('baseURL configuration option is required')
+  }
+
+  let API = {
+    config,
+    ajax,
+
+    toString() {
+      return config.baseURL
+    },
+
+    route(routes={}) {
+      return remap(routes, function(resource) {
+        // For each endpoint (create, read, update, delete...)
+        return remap(resource, function(options) {
+          return API.ajax.bind(API, options)
+        })
+      }, API)
+    }
+
+  }
+
+  return API.route(routes)
 }

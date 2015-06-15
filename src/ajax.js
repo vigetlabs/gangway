@@ -10,14 +10,14 @@ let defaults = {
   type    : 'application/json'
 }
 
-module.exports = function(baseURL, config, overrides) {
+module.exports = function(config, overrides) {
   let options = Object.assign({}, defaults, config, overrides)
 
   if ('mock' in options) {
     return Promise.resolve(options.mock)
   }
 
-  var message = Request(options.method, url(baseURL, options.path))
+  var message = Request(options.method, url(options.baseURL, options.path))
 
   message.send(options.body)    // body parameters
          .query(options.query)  // query parameters
