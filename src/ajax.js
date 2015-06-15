@@ -3,7 +3,7 @@ var Request = require('superagent')
 var url     = require('./url')
 
 let defaults = {
-  params       : {},
+  params     : {},
   headers    : {},
   method     : 'GET',
   path       : '',

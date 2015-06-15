@@ -46,8 +46,16 @@ hand can be held
 
 ## Documentation
 
-Where does documentation exist? Is there anything important about it
-the reader should know?
+### Available options
+
+```
+baseURL    : The base URL prepended to all requests
+method     : Request method (GET, POST, PUT, PATCH, DELETE, etc...)
+onResponse : Run before resolving a request for preprocessing data
+params     : Populate bindings in paths and are sent as request bodies
+path       : The path fragment of the endpoint, appended to baseURL
+type       : Content type, defaults to JSON
+```
 
 ## Final words
 
