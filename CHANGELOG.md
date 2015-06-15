@@ -2,6 +2,8 @@
 
 ## 0.5.0
 
+### New Features
+
 - Added optional parameters. For example: '/users/{id*}'
 
 ## 0.4.0
