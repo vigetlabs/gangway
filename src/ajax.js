@@ -12,8 +12,8 @@ let defaults = {
   onResponse : data => data
 }
 
-module.exports = function(config, overrides) {
-  let options = Object.assign({}, defaults, config, overrides)
+module.exports = function(routeConfig, apiConfig, requestConfig) {
+  let options = Object.assign({}, defaults, routeConfig, apiConfig, requestConfig)
 
   if ('mock' in options) {
     return Promise.resolve(options.mock)

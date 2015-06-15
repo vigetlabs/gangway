@@ -6,7 +6,7 @@ module.exports = function route(API, routes={}) {
 
     // For each endpoint (create, read, update, delete...)
     return remap(resource, function(options) {
-      return API.ajax.bind(null, API.config)
+      return API.ajax.bind(null, API.config, options)
     })
   }, API)
 }
