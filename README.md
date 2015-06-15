@@ -13,7 +13,7 @@ opinions related to how we work.
 Gangway is a factory function that progressively layers configuration
 options for building an AJAX request with `superagent`:
 
-```
+```javascript
 let Gangway = require('../src')
 
 let API = Gangway({
