@@ -27,10 +27,13 @@ API.route({
   users: {
     get: {
       method : 'GET',
-      path   : '/users/{id}'
+      path   : '/users/{id*}' // * indicates that the parameter is optional
     }
   }
 })
+
+// this will send a request to GET http://example.com/users
+API.users.read()
 
 // this will send a request to GET http://example.com/users/10
 API.users.read({ params: { id: '10' } })

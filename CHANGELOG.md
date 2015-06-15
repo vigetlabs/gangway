@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0
+
+- Added optional parameters. For example: '/users/{id*}'
+
 ## 0.4.0
 
 ### Breaking Changes

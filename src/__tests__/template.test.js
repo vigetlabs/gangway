@@ -14,4 +14,8 @@ describe('template', function() {
     }
   })
 
+  it ('does not throw an error on optional bindings', function() {
+    template('path/{foo*}').should.equal('path/')
+  })
+
 })
