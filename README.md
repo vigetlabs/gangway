@@ -1,4 +1,4 @@
-# gangway
+# Gangway
 
 A client-side API abstraction layer
 
@@ -39,14 +39,6 @@ API.users.read()
 API.users.read({ params: { id: '10' } })
 ```
 
-Now go into further detail. But not too much implementation, there is
-a learning section.
-
-## Learning
-
-Are there tutorials? Use this section to guide the reader to where there
-hand can be held
-
 ## Documentation
 
 ### Available options
@@ -60,9 +52,3 @@ params     : Populate bindings in paths and are sent as request bodies. Defaults
 path       : The path fragment of the endpoint, appended to baseURL
 type       : Content type, defaults to JSON
 ```
-
-## Final words
-
-Add a final section that might include any important prior art or
-inspiration. If this isn't your thing, maybe a link to Viget Open
-Source.
