@@ -11,13 +11,11 @@ describe('route', function() {
       description: 'My API',
       baseURL: 'http://example.com'
     })
+    let read = { path: 'users' }
 
-    route(api, { users: { read: { path: 'users' } } })
+    route(api, { users: { read } })
 
-    api.users.read.config.should.have.property('path', 'users')
-
-    for (var i in api.config) {
-      api.users.read.config.should.have.property(i, api.config[i])
-    }
+    api.users.read.config.should.include(read)
+    api.users.read.config.should.include(api.config)
   })
 })
