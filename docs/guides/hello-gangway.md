@@ -1,7 +1,7 @@
 # Hello Gangway
 
 In this guide we'll go over the basic usage of Gangway. Fortunately
-there isn't _too_much to cover, so hopefully we can get you on your
+there isn't _too_ much to cover, so hopefully we can get you on your
 way quickly.
 
 ## Creating a Gangway
