@@ -13,7 +13,7 @@ let defaults = {
 }
 
 module.exports = function(routeConfig, apiConfig, requestConfig) {
-  let options = Object.assign({}, defaults, routeConfig, apiConfig, requestConfig)
+  let options = Object.assign({}, defaults, apiConfig, routeConfig, requestConfig)
 
   if ('mock' in options) {
     return Promise.resolve(options.mock)
