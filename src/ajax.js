@@ -9,7 +9,8 @@ let defaults = {
   method     : 'GET',
   path       : '',
   type       : 'application/json',
-  onResponse : data => data
+  beforeSend : ajax => ajax,
+  onResponse : response => response.body
 }
 
 module.exports = function(routeConfig, apiConfig, requestConfig) {
@@ -27,9 +28,11 @@ module.exports = function(routeConfig, apiConfig, requestConfig) {
          .set(options.headers)  // headers
          .type(options.type)    // content type
 
+  options.beforeSend(message)
+
   return new Promise(function(resolve, reject) {
     message.end(function(err, response) {
-      return err ? reject(err) : resolve(response.body)
+      return err ? reject(err) : resolve(response)
     })
   }).then(options.onResponse)
 }
