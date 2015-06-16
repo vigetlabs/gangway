@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.9.0
+
+- Individual routes now contain configuration settings under `config`,
+  similar to API.config.
+
 ## 0.8.0
 
 - Path template parsing now uses same logic as Hapi (sans wildcard routes)
