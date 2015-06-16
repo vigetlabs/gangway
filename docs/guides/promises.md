@@ -10,12 +10,14 @@
 > The core idea behind promises is that a promise represents the
 > result of an asynchronous operation. A promise is one of three
 > different states: pending, fulfilled, or rejected.
-> - [What is a promise?](https://www.promisejs.org#definition)
+>
+> [What is a promise?](https://www.promisejs.org#definition)
 
 For all endpoints created by Gangway, promises are returned to
 represent the
 request. [The usage of promises is well-documented](https://www.promisejs.org/),
-however for Gangway there are a few important finer points.
+however in Gangway we have made some decisions that build on top of
+promises to support a better developer experience.
 
 The examples for this guide will assume the following setup code:
 
