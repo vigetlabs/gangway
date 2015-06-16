@@ -2,39 +2,61 @@
 
 Thanks you for considering a contribution to this project!
 
-**Add:** A brief introduction to the state of the project and the best way to get started.
-
 ## Setting up the project
 
-**Add:**
+Gangway is built using tools written for
+[nodejs](http://nodejs.org). We recommend installing Node with
+[nvm](https://github.com/creationix/nvm).
 
-- Installing Dependencies
-- Running any examples
+At the time of writing, Gangway is built (and tested) with Node
+0.12.0.
+
+Dependencies are managed with an [`npm`](npmjs.org) `package.json`
+file. You can install dependencies with:
+
+```bash
+npm install
+```
 
 ## Testing
 
-**Add:**
+Gangway uses [Karma](karma-runner.github.io). You can run tests
+with:
 
-- Test commands
-- Information on code coverage (if applicable)
+```bash
+npm test
+```
+
+## Publishing to NPM
+
+This project publishes to npm using:
+
+```shell
+npm run release
+```
+
+This will run a shell script found at `./scripts/release`. It is
+critically important not to simply run `npm publish`. The release
+script sets up an expected structure for hosting on `npm`.
 
 ## Conventions
 
-**Add:**
+### Javascript
 
-- Is master safe?
+Gangway uses ES6 Javascript (compiled using [Babel](babeljs.io)). As
+for style, shoot for:
+
+- No semicolons
+- Commas last,
+- 2 spaces for indentation (no tabs)
+- Prefer ' over "
+- 80 character line length
 
 ### Language Conventions
 
 **Add for each language used**
 
-### Testing
-
-**Add testing conventions**
-
 ### Reviews
 
 All changes should be submitted through pull request. Ideally, at
 least two :+1:s should be given before a pull request is merge.
-
-**Add: feel free to change**
