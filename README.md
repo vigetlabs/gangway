@@ -41,6 +41,9 @@ API.users.read({ params: { id: '10' } })
 
 ## Documentation
 
+Documentation is a work in progress, however checkout the ./docs
+folder for guides and information about the API (as it is completed).
+
 ### Available options
 
 ```
