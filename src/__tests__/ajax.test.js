@@ -57,7 +57,7 @@ describe('ajax', function() {
   it ('can convert bindings using params', function(done) {
     ajax({
       baseURL : baseURL,
-      path    : '/base/test/{ path }.json',
+      path    : '/base/test/{path}.json',
       params  : { path: 'response'}
     }).nodeify(done)
   })
@@ -65,7 +65,7 @@ describe('ajax', function() {
   it ('falls back on the `body` param if no params are given', function(done) {
     ajax({
       baseURL : baseURL,
-      path    : '/base/test/{ path }.json',
+      path    : '/base/test/{path}.json',
       params  : { path: 'response' }
     }).nodeify(done)
   })

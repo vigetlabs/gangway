@@ -15,12 +15,12 @@ describe('url', function() {
   })
 
   it ('replaces templated url params', function() {
-    let location = url('http://foobar.com', '/user/{ id }', { id: 10 })
+    let location = url('http://foobar.com', '/user/{id}', { id: 10 })
     location.should.equal('http://foobar.com/user/10')
   })
 
   it ('cleans up optional templated url params', function() {
-    let location = url('http://foobar.com', '/user/{id?}', { id: 10 })
+    let location = url('http://foobar.com', '/user/{id?}')
     location.should.equal('http://foobar.com/user')
   })
 })

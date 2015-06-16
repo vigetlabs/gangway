@@ -1,10 +1,14 @@
 # Changelog
 
+## 0.8.0
+
+- Path template parsing now uses same logic as Hapi (sans wildcard routes)
+
 ## 0.7.0
 
 ### Breaking Changes
 
-- Optional path parameters were improperly implimented with `*`. This is been corrected to `?`. For example: `users/{id*}` is now `users/{id?`.
+- Optional path parameters were improperly implemented with `*`. This is been corrected to `?`. For example: `users/{id*}` is now `users/{id?`.
 
 ## 0.6.0
 
