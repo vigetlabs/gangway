@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.6.0
+
+### New Features
+
+- Added `beforeSend` option
+
+### Bug Fixes
+
+- Properly set the configuration layering order to `route`, `api`, then `request`
+
 ## 0.5.0
 
 ### New Features
