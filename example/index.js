@@ -11,7 +11,7 @@ API.route({
   users: {
     read: {
       method : 'GET',
-      path   : '/users/{user_id}'
+      path   : '/users/{user_id?}'
     },
     mock: { foo: 'bar' }
   }

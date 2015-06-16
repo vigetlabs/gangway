@@ -3,7 +3,7 @@ module.exports = function (string, params={}) {
     match = match.trim()
 
     if (match in params === false) {
-      if (match[match.length -1] === '*') {
+      if (match[match.length -1] === '?') {
         return ''
       } else {
         throw TypeError(`Parameter ${ match } was not provided in body option`)
