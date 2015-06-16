@@ -27,7 +27,7 @@ API.route({
   users: {
     get: {
       method : 'GET',
-      path   : '/users/{id*}' // * indicates that the parameter is optional
+      path   : '/users/{id?}' // ? indicates that the parameter is optional
     }
   }
 })
