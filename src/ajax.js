@@ -1,6 +1,7 @@
 var Promise = require('promise')
 var Request = require('superagent')
 var url     = require('./url')
+var result  = require('./result')
 
 let defaults = {
   body       : undefined,
@@ -17,7 +18,7 @@ module.exports = function(routeConfig, requestConfig) {
   let options = Object.assign({}, defaults, routeConfig, requestConfig)
 
   if ('mock' in options) {
-    return Promise.resolve(options.mock)
+    return Promise.resolve(result(options.mock, options))
   }
 
   let location = url(options.baseURL, options.path, options.params || options.body)

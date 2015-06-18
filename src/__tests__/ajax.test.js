@@ -24,6 +24,21 @@ describe('ajax', function() {
     })
   })
 
+  it ('the mocked value can be a function', function(done) {
+    let options = {
+      baseURL : 'http://fizbuzz',
+      mock : function(config) {
+        config.should.include(options)
+        return 'yes'
+      }
+    }
+
+    ajax(options).done(function(data) {
+      data.should.equal('yes')
+      done()
+    })
+  })
+
   it ('can override config', function(done) {
     ajax({
       baseURL : 'http://fizbuzz',
