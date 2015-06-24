@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.10.0
+
+- `mock` can now be a function
+
 ## 0.9.0
 
 - Individual routes now contain configuration settings under `config`,
