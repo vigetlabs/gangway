@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.11.0
+
+- Use `body` option for request body, not `params`
+
 ## 0.10.0
 
 - `mock` can now be a function
