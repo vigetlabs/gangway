@@ -24,7 +24,7 @@ module.exports = function(routeConfig, requestConfig) {
   let location = url(options.baseURL, options.path, options.params || options.body)
   var message  = Request(options.method, location)
 
-  message.send(options.params)  // body parameters
+  message.send(options.body)  // body parameters
          .query(options.query)  // query parameters
          .set(options.headers)  // headers
          .type(options.type)    // content type
