@@ -1,6 +1,6 @@
 {
   "name": "gangway",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "private": true,
   "description": "A client-side API abstraction layer",
   "main": "src/api.js",
