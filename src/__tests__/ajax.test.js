@@ -102,6 +102,17 @@ describe('ajax', function() {
     }).nodeify(done)
   })
 
+  it ('can parse an error', function(done) {
+    ajax({
+      baseURL: baseURL,
+      path: '/base/test/bad.json',
+      onError(error) {
+        error.should.be.instanceOf(Error)
+        error.status.should.equal(404)
+      }
+    }).nodeify(done)
+  })
+
   it ('can preprocess a request', function(done) {
     ajax({
       mock: {},

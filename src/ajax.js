@@ -11,7 +11,8 @@ let defaults = {
   path       : '',
   type       : 'application/json',
   beforeSend : ajax => ajax,
-  onResponse : response => response.body
+  onResponse : response => response.body,
+  onError    : error => error
 }
 
 module.exports = function(routeConfig, requestConfig) {
@@ -33,7 +34,7 @@ module.exports = function(routeConfig, requestConfig) {
 
   return new Promise(function(resolve, reject) {
     message.end(function(err, response) {
-      return err ? reject(err) : resolve(response)
+      return err ? reject(options.onError(err)) : resolve(options.onResponse(response))
     })
-  }).then(options.onResponse)
+  })
 }
