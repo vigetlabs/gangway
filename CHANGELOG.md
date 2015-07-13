@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.0
+
+- Add `onError` preprocessor option
+
 ## 0.11.0
 
 - Use `body` option for request body, not `params`
