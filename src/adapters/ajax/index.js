@@ -4,8 +4,8 @@ var result = require('../../result')
 var url = require('./url')
 var configure = require('../../configure')
 
-module.exports = function(config, overrides) {
-  let options = configure(config, overrides)
+module.exports = function(apiConfig, overrides) {
+  let options = configure(apiConfig, overrides)
 
   if ('mock' in options) {
     return Promise.resolve(result(options.mock, options))
@@ -14,9 +14,9 @@ module.exports = function(config, overrides) {
   let location = url(options.baseURL, options.path, options.params || options.body)
   let message  = Request(options.method, location)
 
-  message.send({ ...config.body, ...options.body })
-         .query({ ...config.query, ...options.query })
-         .set({ ...config.headers, ...options.headers })
+  message.send({ ...apiConfig.body, ...options.body })
+         .query({ ...apiConfig.query, ...options.query })
+         .set({ ...apiConfig.headers, ...options.headers })
          .type(options.type)
 
   result(options.beforeSend, message)
