@@ -1,4 +1,5 @@
 let remap = require('./remap')
+let configure = require('./configure')
 
 module.exports = function route(API, routes={}) {
 
@@ -6,8 +7,8 @@ module.exports = function route(API, routes={}) {
 
     // For each endpoint (create, read, update, delete...)
     return remap(resource, function(options) {
-      let config  = Object.assign({}, API.config, options)
-      let request = API.ajax.bind(null, config)
+      let config  = configure(API.config, options)
+      let request = API.config.adapter.bind(null, config)
 
       // Make the config for this route available under 'config'
       request.config = config

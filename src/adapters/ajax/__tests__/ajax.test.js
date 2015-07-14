@@ -1,4 +1,4 @@
-let ajax = require('../ajax')
+let ajax = require('../index')
 let superagent = require('superagent')
 
 describe('ajax', function() {

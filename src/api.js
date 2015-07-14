@@ -1,5 +1,5 @@
-let ajax  = require('./ajax')
 let route = require('./route')
+let configure = require('./configure')
 
 module.exports = function (config, routes) {
 
@@ -12,8 +12,7 @@ module.exports = function (config, routes) {
   }
 
   let API = {
-    config,
-    ajax,
+    config: configure(config),
 
     toString() {
       return config.baseURL

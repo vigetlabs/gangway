@@ -7,15 +7,16 @@ describe('route', function() {
   })
 
   it ('extends each route with configuration settings', function() {
-    let api = API({
+    let base = {
       description: 'My API',
       baseURL: 'http://example.com'
-    })
+    }
     let read = { path: 'users' }
+    let api  = API(base)
 
     route(api, { users: { read } })
 
     api.users.read.config.should.include(read)
-    api.users.read.config.should.include(api.config)
+    api.users.read.config.should.include(base)
   })
 })
