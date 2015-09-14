@@ -25,7 +25,7 @@ let API = Gangway({
 
 API.route({
   users: {
-    get: {
+    read: {
       method : 'GET',
       path   : '/users/{id?}' // ? indicates that the parameter is optional
     }
