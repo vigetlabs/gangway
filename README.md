@@ -56,4 +56,5 @@ onError    : Run before rejecting a request to preprocessing errors
 params     : Populate bindings in paths and are sent as request bodies. Defaults to body.
 path       : The path fragment of the endpoint, appended to baseURL
 type       : Content type, defaults to JSON
+query      : An object of query parameters. Gangway will automatically stringify this into the URL.
 ```
