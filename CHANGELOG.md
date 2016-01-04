@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.13.0
+
+- Internal change to eliminate the dependency of `Function.prototype.bind`.
+
 ## 0.12.0
 
 - Add `onError` preprocessor option
