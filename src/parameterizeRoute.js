@@ -12,6 +12,6 @@ module.exports = function (string, params={}) {
       throw TypeError(`"${key}" was not provided in the given params for ${string}`)
     }
 
-    return params[key] || ''
+    return params[key] !== undefined ? params[key] : ''
   })
 }
