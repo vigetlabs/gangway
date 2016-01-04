@@ -1,4 +1,5 @@
 var API = require('../src/api')
+var assert = require('assert')
 
 describe('API', function() {
   var baseURL = 'http://foo.com'
@@ -7,7 +8,7 @@ describe('API', function() {
     try {
       API()
     } catch(error) {
-      error.should.be.instanceOf(TypeError)
+      assert(error instanceof TypeError)
       done()
     }
   })
@@ -16,13 +17,13 @@ describe('API', function() {
     try {
       API({})
     } catch(error) {
-      error.should.be.instanceOf(TypeError)
+      assert(error instanceof TypeError)
       done()
     }
   })
 
   it ('stringifies to a given baseURL', function() {
-    API({ baseURL: baseURL }).toString().should.equal(baseURL)
+    assert.equal(API({ baseURL: baseURL }).toString(), baseURL)
   })
 
   it ('maps over a list of endpoints', function() {
@@ -34,7 +35,7 @@ describe('API', function() {
       }
     })
 
-    endpoints.foo.should.have.property('bar')
+    assert('bar' in endpoints.foo)
   })
 
   it ('can add new endpoints', function() {
@@ -48,7 +49,7 @@ describe('API', function() {
       }
     })
 
-    endpoints.foo.should.have.property('bar')
+    assert('bar' in endpoints.foo)
   })
 
   it ('folds together headers', function() {
@@ -70,8 +71,8 @@ describe('API', function() {
       }
     })
 
-    endpoints.foo.bar.config.headers.should.have.property('one', 1)
-    endpoints.foo.bar.config.headers.should.have.property('two', 2)
+    assert.equal(endpoints.foo.bar.config.headers.one, 1)
+    assert.equal(endpoints.foo.bar.config.headers.two, 2)
   })
 
   it ('folds together query params', function() {
@@ -93,8 +94,8 @@ describe('API', function() {
       }
     })
 
-    endpoints.foo.bar.config.query.should.have.property('one', 1)
-    endpoints.foo.bar.config.query.should.have.property('two', 2)
+    assert.equal(endpoints.foo.bar.config.query.one, 1)
+    assert.equal(endpoints.foo.bar.config.query.two, 2)
   })
 
   it ('folds together body params', function() {
@@ -116,8 +117,8 @@ describe('API', function() {
       }
     })
 
-    endpoints.foo.bar.config.body.should.have.property('one', 1)
-    endpoints.foo.bar.config.body.should.have.property('two', 2)
+    assert.equal(endpoints.foo.bar.config.body.one, 1)
+    assert.equal(endpoints.foo.bar.config.body.two, 2)
   })
 
 })

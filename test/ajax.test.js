@@ -1,15 +1,32 @@
 var ajax = require('../src/ajax')
 var superagent = require('superagent')
+var fauxJax = require('faux-jax')
+var assert = require('assert')
 
 describe('ajax', function() {
-  var baseURL = window.location.origin
+  var baseURL = 'http://localhost:4000/'
+
+  before(function() {
+    fauxJax.install()
+    fauxJax.on('request', function(request) {
+      if (request.requestURL.match(/response\.json/)) {
+        request.respond(200, { 'Content-Type': 'application/json' }, JSON.stringify({ "name" : "Gangway" }))
+      } else {
+        request.respond(404, { 'Content-Type': 'text/plain' }, "Not found")
+      }
+    })
+  })
+
+  after(function() {
+    fauxJax.restore()
+  })
 
   it ('can send requests', function(done) {
     ajax({
       baseURL : baseURL,
       path    : '/base/test/response.json'
     }).done(function(body) {
-      body.name.should.equal('Gangway')
+      assert.equal(body.name, 'Gangway')
       done()
     })
   })
@@ -19,7 +36,7 @@ describe('ajax', function() {
       baseURL : 'http://fizbuzz',
       mock    : 'fiz'
     }).done(function(body) {
-      body.should.equal('fiz')
+      assert.equal(body, 'fiz')
       done()
     })
   })
@@ -28,13 +45,13 @@ describe('ajax', function() {
     var options = {
       baseURL : 'http://fizbuzz',
       mock : function(config) {
-        config.should.include(options)
+        assert.equal(config.baseURL, options.baseURL)
         return 'yes'
       }
     }
 
     ajax(options).done(function(data) {
-      data.should.equal('yes')
+      assert.equal(data, 'yes')
       done()
     })
   })
@@ -44,7 +61,7 @@ describe('ajax', function() {
       baseURL : 'http://fizbuzz',
       mock    : 'fiz'
     }).done(function(body) {
-      body.should.equal('fiz')
+      assert.equal(body, 'fiz')
       done()
     })
   })
@@ -54,7 +71,7 @@ describe('ajax', function() {
       baseURL : baseURL,
       path    : '/asdf'
     }).done(null, function(error) {
-      error.status.should.equal(404)
+      assert.equal(error.status, 404)
       done()
     })
   })
@@ -64,7 +81,7 @@ describe('ajax', function() {
       baseURL : baseURL,
       path    : '/base/test/response.json'
     }).done(function(data) {
-      data.name.should.equal('Gangway')
+      assert.equal(data.name, 'Gangway')
       done()
     })
   })
@@ -97,7 +114,7 @@ describe('ajax', function() {
       baseURL: baseURL,
       path: '/base/test/response.json',
       onResponse: function (response) {
-        response.should.be.instanceOf(superagent.Response)
+        assert(response instanceof superagent.Response)
       }
     }).nodeify(done)
   })
@@ -107,8 +124,8 @@ describe('ajax', function() {
       baseURL: baseURL,
       path: '/base/test/bad.json',
       onError: function (error) {
-        error.should.be.instanceOf(Error)
-        error.status.should.equal(404)
+        assert(error instanceof Error)
+        assert.equal(error.status, 404)
       }
     }).nodeify(done)
   })
@@ -117,7 +134,7 @@ describe('ajax', function() {
     ajax({
       mock: {},
       beforeSend: function (message) {
-        message.should.be.instanceOf(superagent.Request)
+        assert(message instanceof superagent.Request)
       }
     }).nodeify(done)
   })

@@ -1,5 +1,6 @@
-var API   = require('../src/api')
+var API = require('../src/api')
 var route = require('../src/route')
+var assert = require('assert')
 
 describe('route', function() {
   it ('can handle empty routes', function() {
@@ -15,7 +16,7 @@ describe('route', function() {
 
     route(api, { users: { read: read } })
 
-    api.users.read.config.should.include(read)
-    api.users.read.config.should.include(api.config)
+    assert.equal(api.users.read.config.path, read.path)
+    assert.equal(api.users.read.config.description, api.config.description)
   })
 })
