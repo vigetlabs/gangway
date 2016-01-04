@@ -1,8 +1,8 @@
-let ajax = require('../ajax')
-let superagent = require('superagent')
+var ajax = require('../src/ajax')
+var superagent = require('superagent')
 
 describe('ajax', function() {
-  let baseURL = window.location.origin
+  var baseURL = window.location.origin
 
   it ('can send requests', function(done) {
     ajax({
@@ -25,7 +25,7 @@ describe('ajax', function() {
   })
 
   it ('the mocked value can be a function', function(done) {
-    let options = {
+    var options = {
       baseURL : 'http://fizbuzz',
       mock : function(config) {
         config.should.include(options)
@@ -96,7 +96,7 @@ describe('ajax', function() {
     ajax({
       baseURL: baseURL,
       path: '/base/test/response.json',
-      onResponse(response) {
+      onResponse: function (response) {
         response.should.be.instanceOf(superagent.Response)
       }
     }).nodeify(done)
@@ -106,7 +106,7 @@ describe('ajax', function() {
     ajax({
       baseURL: baseURL,
       path: '/base/test/bad.json',
-      onError(error) {
+      onError: function (error) {
         error.should.be.instanceOf(Error)
         error.status.should.equal(404)
       }
@@ -116,7 +116,7 @@ describe('ajax', function() {
   it ('can preprocess a request', function(done) {
     ajax({
       mock: {},
-      beforeSend(message) {
+      beforeSend: function (message) {
         message.should.be.instanceOf(superagent.Request)
       }
     }).nodeify(done)

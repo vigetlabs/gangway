@@ -1,34 +1,23 @@
+var Mock    = require('./mock')
 var Promise = require('promise')
 var Request = require('superagent')
+var prepare = require('./prepare')
 var url     = require('./url')
-var result  = require('./result')
 
-let defaults = {
-  body       : undefined,
-  params     : undefined,
-  headers    : {},
-  method     : 'GET',
-  path       : '',
-  type       : 'application/json',
-  beforeSend : ajax => ajax,
-  onResponse : response => response.body,
-  onError    : error => error
-}
-
-module.exports = function(routeConfig, requestConfig) {
-  let options = Object.assign({}, defaults, routeConfig, requestConfig)
+module.exports = function AJAX (options) {
+  options = prepare(options)
 
   if ('mock' in options) {
-    return Promise.resolve(result(options.mock, options))
+    return Mock(options)
   }
 
-  let location = url(options.baseURL, options.path, options.params || options.body)
+  var location = url(options.baseURL, options.path, options.params || options.body)
   var message  = Request(options.method, location)
 
-  message.send(options.body)  // body parameters
-         .query(options.query)  // query parameters
-         .set(options.headers)  // headers
-         .type(options.type)    // content type
+  message.type(options.type)
+    .send(options.body)
+    .query(options.query)
+    .set(options.headers)
 
   options.beforeSend(message)
 

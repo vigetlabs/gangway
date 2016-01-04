@@ -1,4 +1,4 @@
-let parameterizeRoute = require('../parameterizeRoute')
+var parameterizeRoute = require('../src/parameterizeRoute')
 
 describe('parameterizeRoute', function() {
 

@@ -22,7 +22,7 @@ promises to support a better developer experience.
 The examples for this guide will assume the following setup code:
 
 ```javascript
-let API = Gangway({ baseURL: 'http://example.com' })
+var API = Gangway({ baseURL: 'http://example.com' })
 
 API.route({
   users: {

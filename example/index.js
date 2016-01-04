@@ -1,6 +1,6 @@
-let Gangway = require('../src')
+var Gangway = require('../src')
 
-let API = Gangway({
+var API = Gangway({
   baseURL: 'http://example.com',
   headers: {
     'x-api-key': 'asdf'

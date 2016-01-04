@@ -10,7 +10,7 @@ It is important to think of Gangway as a cascade of configuration
 options. This begins when you call Gangway:
 
 ```javascript
-let API = Gangway({
+var API = Gangway({
   baseURL : 'http://example.com'
 })
 ```

@@ -1,4 +1,4 @@
-let url = require('../url')
+var url = require('../src/url')
 
 describe('url', function() {
 
@@ -15,12 +15,12 @@ describe('url', function() {
   })
 
   it ('replaces templated url params', function() {
-    let location = url('http://foobar.com', '/user/{id}', { id: 10 })
+    var location = url('http://foobar.com', '/user/{id}', { id: 10 })
     location.should.equal('http://foobar.com/user/10')
   })
 
   it ('cleans up optional templated url params', function() {
-    let location = url('http://foobar.com', '/user/{id?}')
+    var location = url('http://foobar.com', '/user/{id?}')
     location.should.equal('http://foobar.com/user')
   })
 })

@@ -1,6 +1,6 @@
-let parameterizeRoute  = require('./parameterizeRoute')
-let trimRight = /\/$/
-let trimLeft  = /^\//
+var parameterizeRoute  = require('./parameterizeRoute')
+var trimRight = /\/$/
+var trimLeft  = /^\//
 
 module.exports = function (base, path, params) {
   base = base.replace(trimRight, '')

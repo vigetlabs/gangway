@@ -14,9 +14,9 @@ Gangway is a factory function that progressively layers configuration
 options for building an AJAX request with `superagent`:
 
 ```javascript
-let Gangway = require('../src')
+var Gangway = require('../src')
 
-let API = Gangway({
+var API = Gangway({
   baseURL: 'http://example.com',
   headers: {
     'x-api-key': 'your-token-for-every-request'

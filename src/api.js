@@ -1,5 +1,5 @@
-let ajax  = require('./ajax')
-let route = require('./route')
+var ajax  = require('./ajax')
+var route = require('./route')
 
 module.exports = function (config, routes) {
 
@@ -11,15 +11,15 @@ module.exports = function (config, routes) {
     throw new TypeError('baseURL configuration option is required')
   }
 
-  let API = {
-    config,
-    ajax,
+  var API = {
+    config: config,
+    ajax: ajax,
 
-    toString() {
+    toString: function () {
       return config.baseURL
     },
 
-    route(routes) {
+    route: function (routes) {
       return route(API, routes)
     }
 

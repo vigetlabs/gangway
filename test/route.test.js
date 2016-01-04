@@ -1,5 +1,5 @@
-let API   = require('../api')
-let route = require('../route')
+var API   = require('../src/api')
+var route = require('../src/route')
 
 describe('route', function() {
   it ('can handle empty routes', function() {
@@ -7,13 +7,13 @@ describe('route', function() {
   })
 
   it ('extends each route with configuration settings', function() {
-    let api = API({
+    var api = API({
       description: 'My API',
       baseURL: 'http://example.com'
     })
-    let read = { path: 'users' }
+    var read = { path: 'users' }
 
-    route(api, { users: { read } })
+    route(api, { users: { read: read } })
 
     api.users.read.config.should.include(read)
     api.users.read.config.should.include(api.config)

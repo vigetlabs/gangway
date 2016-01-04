@@ -7,7 +7,9 @@
  * @return Object
  */
 
-module.exports = function (obj, transform, map={}) {
+module.exports = function (obj, transform, map) {
+  map = map || {}
+
   for (var key in obj) {
     map[key] = transform(obj[key], key, obj)
   }
