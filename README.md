@@ -32,6 +32,10 @@ API.route({
   }
 })
 
+// this is equivalent to creating a create, read, update, and destroy
+// route. Options are folded into every route.
+API.resource("comments", { query: {} })
+
 // this will send a request to GET http://example.com/users
 API.users.read()
 
