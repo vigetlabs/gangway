@@ -7,13 +7,12 @@ var API = Gangway({
   }
 })
 
+API.resource("users")
+
 API.route({
-  users: {
-    read: {
-      method : 'GET',
-      path   : '/users/{user_id?}'
-    },
-    mock: { foo: 'bar' }
+  comments: {
+    method: "GET",
+    path: "/comments"
   }
 })
 

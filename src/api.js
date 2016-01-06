@@ -1,5 +1,6 @@
 var ajax  = require('./ajax')
 var route = require('./route')
+var resource = require('./resource')
 
 module.exports = function (config, routes) {
 
@@ -21,6 +22,10 @@ module.exports = function (config, routes) {
 
     route: function (routes) {
       return route(API, routes)
+    },
+
+    resource: function (routes, options) {
+      return resource(API, routes, options)
     }
 
   }

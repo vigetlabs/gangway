@@ -1,10 +1,9 @@
 var remap   = require('./remap')
 var prepare = require('./prepare')
 
-module.exports = function route(API, routes) {
+module.exports = function route (API, routes) {
 
   return remap(routes || {}, function(resource) {
-
     // For each endpoint (create, read, update, delete...)
     return remap(resource, function(options) {
       var config = prepare(API.config, options)
