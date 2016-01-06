@@ -24,4 +24,9 @@ describe('url', function() {
     var location = url('http://foobar.com', '/user/{id?}')
     assert.equal(location, 'http://foobar.com/user')
   })
+
+  it ('properly falsy handles numbers', function() {
+    var location = url('http://foobar.com', '/user/{id}', { id: 0 })
+    assert.equal(location, 'http://foobar.com/user/0')
+  })
 })
