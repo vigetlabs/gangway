@@ -11,8 +11,10 @@ API.resource("users")
 
 API.route({
   comments: {
-    method: "GET",
-    path: "/comments"
+    read: {
+      method: "GET",
+      path: "/comments"
+    }
   }
 })
 
