@@ -25,6 +25,7 @@ module.exports = function prepare (/* options list */) {
 
     return assign(memo, next, {
       body    : assign(memo.body, next.body),
+      params  : assign(memo.params, next.params),
       query   : assign(memo.query, next.query),
       headers : assign(memo.headers, next.headers)
     })

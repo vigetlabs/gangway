@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.0
+
+- `headers`, `query`, `body`, and `params` options are now merged
+  together.
+
 ## 0.13.0
 
 - Internal change to eliminate the dependency of `Function.prototype.bind`.

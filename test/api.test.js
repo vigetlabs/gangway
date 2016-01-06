@@ -1,5 +1,6 @@
 var API = require('../src/api')
 var assert = require('assert')
+var fauxJax = require('faux-jax')
 
 describe('API', function() {
   var baseURL = 'http://foo.com'
@@ -121,4 +122,54 @@ describe('API', function() {
     assert.equal(endpoints.foo.bar.config.body.two, 2)
   })
 
+  it ('folds together params', function() {
+    var endpoints = API({
+      baseURL: baseURL,
+      params: {
+        'one': 1
+      }
+    })
+
+    endpoints.route({
+      foo: {
+        bar: {
+          get: '/bip',
+          params: {
+            'two': 2
+          }
+        }
+      }
+    })
+
+    assert.equal(endpoints.foo.bar.config.params.one, 1)
+    assert.equal(endpoints.foo.bar.config.params.two, 2)
+  })
+
+  context('when a route is executed', function() {
+    var api = API({
+      description: 'My API',
+      baseURL: 'http://example.com'
+    })
+
+    api.route({
+      users: {
+        read: {
+          path: 'users'
+        }
+      }
+    })
+
+    it ('folds together configuration', function(done) {
+      fauxJax.install()
+
+      fauxJax.on('request', function(request) {
+        assert.equal(request.requestURL, 'http://another.com/users')
+        fauxJax.restore()
+        done()
+      })
+
+      api.users.read({ baseURL: 'http://another.com' })
+    })
+
+  })
 })

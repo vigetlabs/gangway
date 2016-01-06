@@ -3,6 +3,7 @@ var Promise = require('promise')
 var Request = require('superagent')
 var prepare = require('./prepare')
 var url     = require('./url')
+var assign  = require('./assign')
 
 module.exports = function AJAX (options) {
   options = prepare(options)
@@ -11,13 +12,13 @@ module.exports = function AJAX (options) {
     return Mock(options)
   }
 
-  var location = url(options.baseURL, options.path, options.params || options.body)
+  var location = url(options.baseURL, options.path, assign(options.body, options.params))
   var message  = Request(options.method, location)
 
   message.type(options.type)
-    .send(options.body)
-    .query(options.query)
-    .set(options.headers)
+         .send(options.body)
+         .query(options.query)
+         .set(options.headers)
 
   options.beforeSend(message)
 
