@@ -19,7 +19,9 @@ var DEFAULTS = {
 }
 
 module.exports = function prepare (/* options list */) {
-  var options = [ DEFAULTS ].concat(toArray(arguments))
+  var options = [ DEFAULTS ].concat(toArray(arguments)).filter(function (config) {
+    return !!config
+  })
 
   return options.reduce(function (memo, next) {
 

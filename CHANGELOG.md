@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1
+
+- Fix bug where undefined config would throw off options preparation
+
 ## 1.0.0
 
 - `headers`, `query`, `body`, and `params` options are now merged
