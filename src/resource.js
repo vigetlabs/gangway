@@ -2,27 +2,26 @@ var assign = require('./assign')
 
 module.exports = function resource (API, name, options) {
   var route = {}
-  var path = name + '/{id}'
 
   route[name] = {
     create: assign(options, {
       method: 'POST',
-      path: path
+      path: name + '/{id}'
     }),
 
     read: assign(options, {
       method: 'GET',
-      path: path
+      path: name + '/{id?}'
     }),
 
     update: assign(options, {
       method: 'PATCH',
-      path: path
+      path: name + '/{id}'
     }),
 
     destroy: assign(options, {
       method: 'DELETE',
-      path: path
+      path: name + '/{id}'
     })
   }
 

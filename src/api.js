@@ -1,6 +1,7 @@
 var ajax  = require('./ajax')
 var route = require('./route')
 var resource = require('./resource')
+var url = require('./url')
 
 module.exports = function (config, routes) {
 
@@ -18,6 +19,10 @@ module.exports = function (config, routes) {
 
     toString: function () {
       return config.baseURL
+    },
+
+    resolve: function (path, params) {
+      return url(config.baseURL, path, params)
     },
 
     route: function (routes) {

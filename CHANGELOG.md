@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1
+
+- Resource READ operation should use optional id parameter
+
 ## 1.1.0
 
 - Add resource API as shorthand for RESTful resources

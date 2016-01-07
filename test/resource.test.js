@@ -18,8 +18,16 @@ describe('resource', function() {
     })
 
     it ('generates a read route', function() {
-      assert.equal(api.users.read.config.path, 'users/{id}')
+      assert.equal(api.users.read.config.path, 'users/{id?}')
       assert.equal(api.users.read.config.method, 'GET')
+    })
+
+    it ('uses an optional parameter for the ID of a resource for the read route', function() {
+      assert.equal(api.resolve(api.users.read.config.path),
+                  'http://example.com/users')
+
+      assert.equal(api.resolve(api.users.read.config.path, { id: 1 }),
+                   'http://example.com/users/1')
     })
 
     it ('generates a update route', function() {
@@ -51,7 +59,7 @@ describe('resource', function() {
       })
 
       it ('never assigns options over the path attribute', function() {
-        assert.equal(api.candy.read.config.path, 'candy/{id}')
+        assert.equal(api.candy.read.config.path, 'candy/{id?}')
       })
     })
   })

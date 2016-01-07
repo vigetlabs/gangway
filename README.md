@@ -1,6 +1,6 @@
 # Gangway
 
-A client-side API abstraction layer
+A client-side API abstraction layer.
 
 Gangway is our general purpose tool for working with APIs on the
 client-side. It is a thin layer on top of `superagent` with specific
@@ -8,13 +8,15 @@ opinions related to how we work.
 
 [![Circle CI](https://circleci.com/gh/vigetlabs/gangway.svg?style=svg&circle-token=d7c29c3bd61f3c3d671d1ba02841eb0c174d311a)](https://circleci.com/gh/vigetlabs/gangway)
 
-## Overview
+## Usage
 
 Gangway is a factory function that progressively layers configuration
-options for building an AJAX request with `superagent`:
+options for building an AJAX request with `superagent`.
+
+The first step is invoke Gangway with some options:
 
 ```javascript
-var Gangway = require('../src')
+var Gangway = require('gangway')
 
 var API = Gangway({
   baseURL: 'http://example.com',
@@ -22,7 +24,12 @@ var API = Gangway({
     'x-api-key': 'your-token-for-every-request'
   }
 })
+```
 
+With default configuration options out of the way, let's add some
+specific routes.
+
+```javascript
 API.route({
   users: {
     read: {
@@ -31,16 +38,34 @@ API.route({
     }
   }
 })
+```
 
+`API.users.read()` will now perform a GET request to
+`/users/{id}`. The `?` in the path option specifies that it is
+optional. This is useful when using the same route for index and show
+endpoints for resources.
+
+For RESTful resources, adding routes this way can become
+tedious. Gangway provides another method for quickly building routes
+for RESTful resources:
+
+```javascript
 // this is equivalent to creating a create, read, update, and destroy
 // route. Options are folded into every route.
-API.resource("comments", { query: {} })
+API.resource("comments", {})
+```
 
+From there, the Gangway instance is ready for use!
+
+```javascript
 // this will send a request to GET http://example.com/users
 API.users.read()
 
 // this will send a request to GET http://example.com/users/10
 API.users.read({ params: { id: '10' } })
+
+// the same is true for routes added via API.resource
+API.comments.read({ params: { id: '2' }})
 ```
 
 ## Documentation
