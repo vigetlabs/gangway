@@ -50,7 +50,7 @@ tedious. Gangway provides another method for quickly building routes
 for RESTful resources:
 
 ```javascript
-// this is equivalent to creating a create, read, update, and destroy
+// This is equivalent to creating a create, read, update, and destroy
 // route. Options are folded into every route.
 API.resource("comments", {})
 ```
@@ -58,13 +58,13 @@ API.resource("comments", {})
 From there, the Gangway instance is ready for use!
 
 ```javascript
-// this will send a request to GET http://example.com/users
+// This will send a request to GET http://example.com/users
 API.users.read()
 
-// this will send a request to GET http://example.com/users/10
+// This will send a request to GET http://example.com/users/10
 API.users.read({ params: { id: '10' } })
 
-// the same is true for routes added via API.resource
+// The same is true for routes added via API.resource
 API.comments.read({ params: { id: '2' }})
 ```
 
