@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.0
+
+- Add resource API as shorthand for RESTful resources
+
 ## 1.0.1
 
 - Fix bug where undefined config would throw off options preparation
