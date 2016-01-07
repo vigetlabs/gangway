@@ -71,7 +71,7 @@ API.comments.read({ params: { id: '2' }})
 ## Documentation
 
 See the available options below, or consider working through the
-[Hello, Gangway](./docs/guides/hello-gangway.md) guide.
+[Hello Gangway](./docs/guides/hello-gangway.md) guide.
 
 ### Available options
 
