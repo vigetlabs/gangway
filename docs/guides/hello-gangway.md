@@ -26,7 +26,7 @@ API.route({
   users: {
     read: {
       method : 'GET',
-      path   : 'users/{id?}
+      path   : 'users/{id?}'
     }
   }
 })
@@ -74,6 +74,46 @@ layer configuration options in the following order: `API`, `route`,
 As a final note, the `?` in `{id?}` indicates that the parameter is
 optional. If params are not provided, it will set the path to
 `/users`.
+
+## The resource method.
+
+For RESTful API endpoints, manually producing a route for every action
+is tedious. In light of this, Gangway provides an additional
+`resource` method for quickly building routes for RESTful resources:
+
+```javascript
+API.resource('users')
+```
+
+This is functionally equivalent to:
+
+```javascript
+API.route({
+
+  users: {
+    create: {
+      method: 'POST',
+      path: 'users/{id}'
+    },
+
+    read: {
+      method: 'GET',
+      path: 'users/{id?}'
+    },
+
+    update: {
+      method: 'PATCH',
+      path: 'users/{id}'
+    },
+
+    destroy: {
+      method: 'DELETE',
+      path: 'users/{id}'
+    }
+
+  }
+})
+```
 
 ## Wrapping up
 
