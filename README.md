@@ -70,8 +70,8 @@ API.comments.read({ params: { id: '2' }})
 
 ## Documentation
 
-Documentation is a work in progress, however checkout the ./docs
-folder for guides and information about the API (as it is completed).
+See the available options below, or consider working through the
+[Hello, Gangway](./docs/guides/hello-gangway.md) guide.
 
 ### Available options
 
@@ -87,6 +87,8 @@ path       : The path fragment of the endpoint, appended to baseURL
 type       : Content type, defaults to JSON
 query      : An object of query parameters. Gangway will automatically stringify this into the URL.
 ```
+
+Additionally consider skimming through the [./docs](./docs) folder.
 
 ***
 
