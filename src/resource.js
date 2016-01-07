@@ -6,7 +6,7 @@ module.exports = function resource (API, name, options) {
   route[name] = {
     create: assign(options, {
       method: 'POST',
-      path: name + '/{id}'
+      path: name
     }),
 
     read: assign(options, {

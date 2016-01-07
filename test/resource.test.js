@@ -13,7 +13,7 @@ describe('resource', function() {
     api.resource('users')
 
     it ('generates a create route', function() {
-      assert.equal(api.users.create.config.path, 'users/{id}')
+      assert.equal(api.users.create.config.path, 'users')
       assert.equal(api.users.create.config.method, 'POST')
     })
 

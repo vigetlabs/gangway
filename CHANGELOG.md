@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.2
+
+- Resource CREATE operation should post to resource root path
+
 ## 1.1.1
 
 - Resource READ operation should use optional id parameter
