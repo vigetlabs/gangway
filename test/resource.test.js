@@ -33,13 +33,25 @@ describe('resource', function() {
     })
 
     context('and options are provided', function() {
-      api.resource('candy', { query: { sweet: true }})
+      api.resource('candy', {
+        method: 'POST',
+        path: 'bad',
+        query: { sweet: true }
+      })
 
       it ('assigns those options to routes', function() {
         assert.equal(api.candy.create.config.query.sweet, true)
         assert.equal(api.candy.read.config.query.sweet, true)
         assert.equal(api.candy.update.config.query.sweet, true)
         assert.equal(api.candy.destroy.config.query.sweet, true)
+      })
+
+      it ('never assigns options over the method attribute', function() {
+        assert.equal(api.candy.read.config.method, 'GET')
+      })
+
+      it ('never assigns options over the path attribute', function() {
+        assert.equal(api.candy.read.config.path, 'candy/{id}')
       })
     })
   })

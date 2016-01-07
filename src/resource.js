@@ -4,24 +4,25 @@ module.exports = function resource (API, name, options) {
   var route = {}
 
   route[name] = {
-    create: assign({
+    create: assign(options, {
       method: 'POST',
       path: name + '/{id}'
-    }, options),
+    }),
 
-    read: assign({
+    read: assign(options, {
+      method: 'GET',
       path: name + '/{id}'
-    }, options),
+    }),
 
-    update: assign({
+    update: assign(options, {
       method: 'PATCH',
       path: name + '/{id}'
-    }, options),
+    }),
 
-    destroy: assign({
+    destroy: assign(options, {
       method: 'DELETE',
       path: name + '/{id}'
-    }, options)
+    })
   }
 
   return API.route(route)
