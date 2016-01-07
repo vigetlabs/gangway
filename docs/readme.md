@@ -12,6 +12,7 @@
 ```
 baseURL    : The base URL prepended to all requests
 body       : The request body
+headers    : Request headers.
 method     : Request method (GET, POST, PUT, PATCH, DELETE, etc...)
 beforeSend : Configure an instance of superagent before the request is sent
 onResponse : Run before resolving a request for preprocessing data
