@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.0
+
+- Upgraded superagent to ~1.7.
+
 ## 1.1.2
 
 - Resource CREATE operation should post to resource root path
