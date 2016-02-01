@@ -21,10 +21,14 @@ API.prototype = {
   ajax: ajax,
 
   namespace: function (key) {
+    // Create a clone of the current instance, overriding the segments
+    // attribute to be one step deeper
     var child = Object.create(this, {
       segments: { value: this.segments.concat(key) }
     })
 
+    // Prevent the namespace from clobbering any existing routes. Instead,
+    // assign those routes to the namespace as properties
     this[key] = key in this ? assign(child, this[key]) : child
 
     return child
