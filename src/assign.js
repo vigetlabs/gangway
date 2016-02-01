@@ -1,7 +1,7 @@
 var toArray = require('./toArray')
 
 module.exports = function assign (initial/*... objects list */) {
-  var toMerge = toArray(arguments).filter(i => i != undefined)
+  var toMerge = toArray(arguments)
 
   return toMerge.reduce(function(memo, next) {
     if (next) {
