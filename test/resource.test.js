@@ -63,4 +63,15 @@ describe('resource', function() {
       })
     })
   })
+
+  context('when a namespace function is provided', function() {
+    var api = API()
+
+    it ('can create namespaced routes', function(done) {
+      api.resource('users', {}, function (users) {
+        assert.equal(users.create, api.users.create)
+        done()
+      })
+    })
+  })
 })

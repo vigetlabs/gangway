@@ -16,6 +16,8 @@
     "url": "git://github.com/vigetlabs/gangway.git"
   },
   "dependencies": {
+    "foliage": "0.25.0",
+    "inflected": "1.1.6",
     "promise": "~7.1",
     "superagent": "~1.7"
   },

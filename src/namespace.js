@@ -1,23 +1,17 @@
-var Inflector = require('inflected')
 var ajax      = require('./ajax')
 var assign    = require('./assign')
 var prepare   = require('./prepare')
 var resource  = require('./resource')
 var route     = require('./route')
 var url       = require('./url')
+var Inflector = require('inflected')
 
-function API (config, routes) {
-  if (this instanceof API === false) {
-    return new API(config, routes)
-  }
-
+function Namespace (config) {
   this.config   = prepare(config)
   this.segments = []
-
-  this.route(routes)
 }
 
-API.prototype = {
+Namespace.prototype = {
   ajax: ajax,
 
   namespace: function (key) {
@@ -53,4 +47,4 @@ API.prototype = {
   }
 }
 
-module.exports = API
+module.exports = Namespace

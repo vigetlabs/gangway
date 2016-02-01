@@ -5,24 +5,6 @@ var fauxJax = require('faux-jax')
 describe('API', function() {
   var baseURL = 'http://foo.com'
 
-  it ('throws an error if not given a config', function(done) {
-    try {
-      API()
-    } catch(error) {
-      assert(error instanceof TypeError)
-      done()
-    }
-  })
-
-  it ('throws an error if not given a baseURL', function(done) {
-    try {
-      API({})
-    } catch(error) {
-      assert(error instanceof TypeError)
-      done()
-    }
-  })
-
   it ('stringifies to a given baseURL', function() {
     assert.equal(API({ baseURL: baseURL }).toString(), baseURL)
   })
