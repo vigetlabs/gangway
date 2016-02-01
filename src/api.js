@@ -1,10 +1,10 @@
-var Inflector = require('inflected')
 var ajax      = require('./ajax')
 var assign    = require('./assign')
 var prepare   = require('./prepare')
 var resource  = require('./resource')
 var route     = require('./route')
 var url       = require('./url')
+var segmentize = require('./segmentize')
 
 function API (config, routes) {
   if (this instanceof API === false) {
@@ -31,13 +31,7 @@ API.prototype = {
   },
 
   toString: function () {
-    return url.resolve(this.config.baseURL, this.getBasePath())
-  },
-
-  getBasePath() {
-    return this.segments.reduce(function(memo, segment, i, all) {
-      return url.resolve(memo, segment + (i === all.length - 1 ? '' : '/{' + Inflector.singularize(segment) + '_id}'))
-    }, '')
+    return url.resolve(this.config.baseURL, segmentize(this.segments))
   },
 
   resolve: function (path, params) {
