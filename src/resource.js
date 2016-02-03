@@ -27,9 +27,11 @@ module.exports = function resource (API, name, options, nest) {
 
   API.route(route)
 
+  var child = API.namespace(name)
+
   if (nest) {
-    nest(API.namespace(name))
+    nest(child)
   }
 
-  return API
+  return child
 }

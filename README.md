@@ -13,7 +13,7 @@ opinions related to how we work.
 Gangway is a factory function that progressively layers configuration
 options for building an AJAX request with `superagent`.
 
-The first step is invoke Gangway with some options:
+### Create an instance of Gangway
 
 ```javascript
 var Gangway = require('gangway')
@@ -26,8 +26,7 @@ var API = Gangway({
 })
 ```
 
-With default configuration options out of the way, let's add some
-specific routes.
+### Add routes
 
 ```javascript
 API.route({
@@ -45,6 +44,8 @@ API.route({
 optional. This is useful when using the same route for index and show
 endpoints for resources.
 
+### Add routes in bulk with `.resource`
+
 For RESTful resources, adding routes this way can become
 tedious. Gangway provides another method for quickly building routes
 for RESTful resources:
@@ -55,7 +56,9 @@ for RESTful resources:
 API.resource("comments", {})
 ```
 
-From there, the Gangway instance is ready for use!
+### Sending requests
+
+Assuming the previous steps have been followed, Gangway is ready for use!
 
 ```javascript
 // This will send a request to GET http://example.com/users

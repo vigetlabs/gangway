@@ -74,4 +74,11 @@ describe('resource', function() {
       })
     })
   })
+
+  it('returns a namespaced API object', function() {
+    var api = API()
+    var users = api.resource('users')
+
+    assert.equal(users, api.users)
+  })
 })

@@ -4,11 +4,11 @@ var assert = require('assert')
 describe('Namespace', function() {
 
   it ('can namespace a route', function() {
-    var api = new API()
-    var foo = api.namespace('foo')
-    var bar = foo.namespace('bar')
+    var api    = new API()
+    var parent = api.namespace('parent')
+    var child  = parent.namespace('child')
 
-    assert.deepEqual(bar.segments, [ 'foo', 'bar' ])
+    assert.deepEqual(child.segments, [ 'parent', 'child' ])
   })
 
   it ('does not clobber namespaces', function() {
@@ -43,7 +43,7 @@ describe('Namespace', function() {
 
   context('when a resource is created', function() {
     var api   = new API()
-    var users = api.resource('users').namespace('users')
+    var users = api.resource('users')
 
     context('and a resource is generated', function() {
       var notes = users.resource('notes')
