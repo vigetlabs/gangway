@@ -2,6 +2,9 @@
   "name": "gangway",
   "version": "1.2.0",
   "description": "A client-side API abstraction layer",
+  "engines": {
+    "node": ">= 0.12"
+  },
   "main": "src/api.js",
   "scripts": {
     "prepublish": "npm test",
