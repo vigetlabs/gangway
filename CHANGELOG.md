@@ -1,5 +1,53 @@
 # Changelog
 
+## 1.3.0
+
+### What's new
+
+- The `baseURL` configuration option now defaults to `/`.
+- The `baseURL` configuration option is no longer a required option.
+- `::resource` returns a namespaced version of the API.
+- `::resource` accepts function as a third argument. This function is
+  invoked with a namespaced version of the Gangway instance that
+  operates under the provided key.
+
+This version adds namespacing to Gangway. The following is now
+possible:
+
+```javascript
+var API = Gangway()
+
+// This will create CRUD routes for `/users` and `/users/{user_id}/articles`
+API.resource('users', {}, function (users) {
+    users.resource('articles')
+})
+```
+
+### Upgrading
+
+Those chaining off of `::resource` should update their code to reflect
+the change in the returned value. This returned value is a namespaced
+version of the Gangway instance that operates on the key given as the
+first argument.
+
+#### Old
+
+```javascript
+var API = Gangway()
+
+API.resource('users')
+   .resource('posts')
+```
+
+#### New
+
+```javascript
+var API = Gangway()
+
+API.resource('users')
+API.resource('posts')
+```
+
 ## 1.2.0
 
 - Upgraded superagent to ~1.7.
