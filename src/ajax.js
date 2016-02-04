@@ -12,7 +12,7 @@ module.exports = function AJAX (options) {
     return Mock(options)
   }
 
-  var location = url(options.baseURL, options.path, assign({}, options.body, options.params))
+  var location = url(options.baseURL, url.resolve(options.basePath, options.path), assign({}, options.body, options.params))
   var message  = Request(options.method, location)
 
   message.type(options.type)

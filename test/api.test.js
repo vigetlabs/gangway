@@ -2,11 +2,16 @@ var API = require('../src/api')
 var assert = require('assert')
 var fauxJax = require('faux-jax')
 
-describe('API', function() {
+describe('API()', function() {
   var baseURL = 'http://foo.com'
 
   it ('stringifies to a given baseURL', function() {
     assert.equal(API({ baseURL: baseURL }).toString(), baseURL)
+  })
+
+  it ('can resolve a url', function() {
+    assert.equal('http://example.com/path',
+                 API({ baseURL: 'http://example.com' }).resolve('path'))
   })
 
   it ('maps over a list of endpoints', function() {
@@ -154,4 +159,41 @@ describe('API', function() {
     })
 
   })
+
+  context('when a namespaced route is executed', function() {
+    var api = API({
+      description: 'My API',
+      baseURL: 'http://example.com'
+    })
+
+    api.resource('users').resource('posts')
+
+    beforeEach(function() {
+      fauxJax.install()
+    })
+
+    afterEach(function() {
+      fauxJax.restore()
+    })
+
+    it ('properly builds URLs for namespaces', function(done) {
+      fauxJax.on('request', function(request) {
+        assert.equal(request.requestURL, 'http://example.com/users/1')
+        done()
+      })
+
+      api.users.read({ params: { id: 1 }})
+    })
+
+    it ('properly builds URLs for deeply nested namespaces', function(done) {
+      fauxJax.on('request', function(request) {
+        assert.equal(request.requestURL, 'http://example.com/users/1/posts/2')
+        done()
+      })
+
+      api.users.posts.read({ params: { user_id: 1, id: 2 }})
+    })
+
+  })
+
 })

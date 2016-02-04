@@ -21,10 +21,15 @@ API.prototype = {
   ajax: ajax,
 
   namespace: function (key) {
-    // Create a clone of the current instance, overriding the segments
-    // attribute to be one step deeper
+    var segments = this.segments.concat(key)
+
+    var config = assign({}, this.config, {
+      basePath: segmentize(segments)
+    })
+
     var child = Object.create(this, {
-      segments: { value: this.segments.concat(key) }
+      segments: { value: segments },
+      config  : { value: config }
     })
 
     // Prevent the namespace from clobbering any existing routes. Instead,
@@ -35,7 +40,7 @@ API.prototype = {
   },
 
   toString: function () {
-    return url.resolve(this.config.baseURL, segmentize(this.segments))
+    return url.resolve(this.config.baseURL, this.config.basePath)
   },
 
   resolve: function (path, params) {

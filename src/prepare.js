@@ -7,6 +7,7 @@ var toArray  = require('./toArray')
 
 var DEFAULTS = {
   baseURL    : '/',
+  basePath   : '',
   body       : undefined,
   params     : undefined,
   headers    : {},

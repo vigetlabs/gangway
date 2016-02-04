@@ -1,49 +1,45 @@
 var API = require('../src/api')
-var route = require('../src/route')
 var assert = require('assert')
+var url = require('../src/url')
 
-describe('resource', function() {
+describe('Resource()', function() {
 
   context('when API.resource is invoked', function() {
     var api = API({
-      description: 'My API',
       baseURL: 'http://example.com'
     })
-
-    api.resource('users')
+    var users = api.resource('users')
 
     it ('generates a create route', function() {
-      assert.equal(api.users.create.config.path, 'users')
-      assert.equal(api.users.create.config.method, 'POST')
+      assert.equal(users.create, 'http://example.com/users')
+      assert.equal(users.create.config.method, 'POST')
     })
 
     it ('generates a read route', function() {
-      assert.equal(api.users.read.config.path, 'users/{id?}')
+      assert.equal(users.read, 'http://example.com/users/{id?}')
       assert.equal(api.users.read.config.method, 'GET')
     })
 
     it ('uses an optional parameter for the ID of a resource for the read route', function() {
-      assert.equal(api.resolve(api.users.read.config.path),
-                  'http://example.com/users')
+      assert.equal(url(users.read), 'http://example.com/users')
 
-      assert.equal(api.resolve(api.users.read.config.path, { id: 1 }),
-                   'http://example.com/users/1')
+      assert.equal(url(users.read, '', { id: 1 }), 'http://example.com/users/1')
     })
 
     it ('generates a update route', function() {
-      assert.equal(api.users.update.config.path, 'users/{id}')
-      assert.equal(api.users.update.config.method, 'PATCH')
+      assert.equal(users.update.toString(), 'http://example.com/users/{id}')
+      assert.equal(users.update.config.method, 'PATCH')
     })
 
     it ('generates a destroy route', function() {
-      assert.equal(api.users.destroy.config.path, 'users/{id}')
+      assert.equal(users.destroy.toString(), 'http://example.com/users/{id}')
       assert.equal(api.users.destroy.config.method, 'DELETE')
     })
 
     context('and options are provided', function() {
       api.resource('candy', {
         method: 'POST',
-        path: 'bad',
+        path: 'overwritten',
         query: { sweet: true }
       })
 
@@ -59,7 +55,7 @@ describe('resource', function() {
       })
 
       it ('never assigns options over the path attribute', function() {
-        assert.equal(api.candy.read.config.path, 'candy/{id?}')
+        assert.notEqual(api.candy.read.config.path, 'overwritten')
       })
     })
   })
