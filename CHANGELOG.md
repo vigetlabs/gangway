@@ -1,6 +1,11 @@
 # Changelog
 
-## 1.3.0
+## 1.3.1
+
+- Fixed critical issue with nested resources where their paths failed
+  to properly construct.
+
+## 1.3.0 (Deprecated, see 1.3.1)
 
 ### What's new
 

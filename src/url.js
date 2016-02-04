@@ -1,4 +1,3 @@
-var toArray = require('./toArray')
 var parameterizeRoute  = require('./parameterizeRoute')
 var trimRight = /\/$/
 var trimLeft  = /^\//
