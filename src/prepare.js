@@ -10,7 +10,9 @@ var DEFAULTS = {
   basePath   : '',
   body       : undefined,
   params     : undefined,
-  headers    : {},
+  headers    : {
+    'Accept': 'application/json'
+  },
   method     : 'GET',
   path       : '',
   query      : {},

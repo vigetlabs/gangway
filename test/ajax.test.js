@@ -31,6 +31,15 @@ describe('ajax', function() {
     })
   })
 
+  it ('automatically adds an Accept JSON header', function (done) {
+    ajax({
+      beforeSend(ajax) {
+        assert.equal(ajax.header.accept, 'application/json')
+        done()
+      }
+    })
+  })
+
   it ('can be mocked out', function(done) {
     ajax({
       baseURL : 'http://fizbuzz',
