@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.0
+
+_Currently release candidate at `gangway@1.4.0-rc`._
+
+- Added `Accept: "application/json" default header
+
 ## 1.3.1
 
 - Fixed critical issue with nested resources where their paths failed
