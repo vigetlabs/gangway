@@ -33,7 +33,7 @@ describe('ajax', function() {
 
   it ('automatically adds an Accept JSON header', function (done) {
     ajax({
-      beforeSend(ajax) {
+      beforeSend: function (ajax) {
         assert.equal(ajax.header.accept, 'application/json')
         done()
       }
