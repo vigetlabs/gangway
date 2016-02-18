@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.0
+
+- Internal change: remove dependency on inflection library.
+
 ## 1.4.0
 
 _Currently release candidate at `gangway@1.4.0-rc`._
