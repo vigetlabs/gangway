@@ -194,6 +194,22 @@ describe('API()', function() {
       api.users.posts.read({ params: { user_id: 1, id: 2 }})
     })
 
+    it ('does not add additional post parameters', function(done) {
+      var api = API({
+        baseURL: 'http://example.com'
+      })
+
+      var users = api.resource('users')
+      var notes = users.resource('notes')
+
+      fauxJax.on('request', function(request) {
+        assert.equal('note' in JSON.parse(request.requestBody), false)
+        done()
+      })
+
+      notes.create({ body: { description: 'hi' }, params: { user_id: 1 }})
+    })
+
   })
 
 })
