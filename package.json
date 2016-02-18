@@ -1,6 +1,6 @@
 {
   "name": "gangway",
-  "version": "1.4.0-rc",
+  "version": "1.4.0",
   "description": "A client-side API abstraction layer",
   "engines": {
     "node": ">= 0.12"
