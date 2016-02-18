@@ -23,7 +23,7 @@
     "superagent": "~1.7"
   },
   "devDependencies": {
-    "faux-jax": "4.2.2",
+    "faux-jax": "https://github.com/algolia/faux-jax",
     "istanbul": "0.4.2",
     "mocha": "2.4.5"
   }
