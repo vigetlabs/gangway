@@ -20,12 +20,12 @@ function API (config, routes) {
 API.prototype = {
   ajax: ajax,
 
-  namespace: function (key) {
+  namespace: function (key, options) {
     var segments = this.segments.concat(key)
 
     var config = assign({}, this.config, {
       basePath: segmentize(segments)
-    })
+    }, options)
 
     var child = Object.create(this, {
       segments: { value: segments },

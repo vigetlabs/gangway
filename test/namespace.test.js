@@ -14,15 +14,13 @@ describe('Namespace', function() {
   it ('does not clobber namespaces', function() {
     var api = new API()
 
-    api.route({
-      users: {
-        read: {}
-      }
+    var read = api.namespace('users').route({
+      read: {}
     })
 
-    var users = api.namespace('users')
+    var users = api.resource('users')
 
-    assert('read' in api.users)
+    assert.equal(api.users.read, users.read, read)
   })
 
   it ('toString reflects namespace segments', function() {
@@ -39,6 +37,34 @@ describe('Namespace', function() {
     var posts = users.namespace('posts')
 
     assert.equal(posts.toString(), '/users/{user_id}/posts')
+  })
+
+  context('when a namespace is created with options', function() {
+    var api = new API()
+    var users = api.namespace('users', { query: { test: true }})
+
+    it ('sends those default options to child namespaces', function() {
+      var posts = users.namespace('posts')
+      assert.equal(posts.config.query.test, true)
+    })
+
+    it ('sends those default options to routes', function() {
+      var posts = users.namespace('posts').route({
+        create: {
+          method: 'POST'
+        }
+      })
+      assert.equal(posts.create.config.query.test, true)
+    })
+
+    it ('the basePath option is overrideable', function() {
+      var posts = users.namespace('posts', { basePath: 'test' }).route({
+        create: {
+          method: 'POST'
+        }
+      })
+      assert.equal(posts.create.toString(), '/test')
+    })
   })
 
   context('when a resource is created', function() {

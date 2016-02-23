@@ -14,30 +14,26 @@ describe('API()', function() {
                  API({ baseURL: 'http://example.com' }).resolve('path'))
   })
 
-  it ('maps over a list of endpoints', function() {
+  it ('maps over a list of endpoints when instantiated', function() {
     var endpoints = API({ baseURL: baseURL }, {
       foo: {
-        bar: {
-          get: '/bip'
-        }
+        get: '/bip'
       }
     })
 
-    assert('bar' in endpoints.foo)
+    assert('foo' in endpoints)
   })
 
   it ('can add new endpoints', function() {
     var endpoints = API({ baseURL: baseURL })
 
     endpoints.route({
-      foo: {
-        bar: {
-          get: '/bip'
-        }
+      bar: {
+        get: '/bip'
       }
     })
 
-    assert('bar' in endpoints.foo)
+    assert('bar' in endpoints)
   })
 
   it ('folds together headers', function() {
@@ -50,17 +46,15 @@ describe('API()', function() {
 
     endpoints.route({
       foo: {
-        bar: {
-          get: '/bip',
-          headers: {
-            'two': 2
-          }
+        get: '/bip',
+        headers: {
+          'two': 2
         }
       }
     })
 
-    assert.equal(endpoints.foo.bar.config.headers.one, 1)
-    assert.equal(endpoints.foo.bar.config.headers.two, 2)
+    assert.equal(endpoints.foo.config.headers.one, 1)
+    assert.equal(endpoints.foo.config.headers.two, 2)
   })
 
   it ('folds together query params', function() {
@@ -73,17 +67,15 @@ describe('API()', function() {
 
     endpoints.route({
       foo: {
-        bar: {
-          get: '/bip',
-          query: {
-            'two': 2
-          }
+        get: '/bip',
+        query: {
+          'two': 2
         }
       }
     })
 
-    assert.equal(endpoints.foo.bar.config.query.one, 1)
-    assert.equal(endpoints.foo.bar.config.query.two, 2)
+    assert.equal(endpoints.foo.config.query.one, 1)
+    assert.equal(endpoints.foo.config.query.two, 2)
   })
 
   it ('folds together body params', function() {
@@ -96,17 +88,14 @@ describe('API()', function() {
 
     endpoints.route({
       foo: {
-        bar: {
-          get: '/bip',
-          body: {
-            'two': 2
-          }
+        body: {
+          'two': 2
         }
       }
     })
 
-    assert.equal(endpoints.foo.bar.config.body.one, 1)
-    assert.equal(endpoints.foo.bar.config.body.two, 2)
+    assert.equal(endpoints.foo.config.body.one, 1)
+    assert.equal(endpoints.foo.config.body.two, 2)
   })
 
   it ('folds together params', function() {
@@ -119,17 +108,15 @@ describe('API()', function() {
 
     endpoints.route({
       foo: {
-        bar: {
-          get: '/bip',
-          params: {
-            'two': 2
-          }
+        get: '/bip',
+        params: {
+          'two': 2
         }
       }
     })
 
-    assert.equal(endpoints.foo.bar.config.params.one, 1)
-    assert.equal(endpoints.foo.bar.config.params.two, 2)
+    assert.equal(endpoints.foo.config.params.one, 1)
+    assert.equal(endpoints.foo.config.params.two, 2)
   })
 
   context('when a route is executed', function() {
@@ -138,11 +125,9 @@ describe('API()', function() {
       baseURL: 'http://example.com'
     })
 
-    api.route({
-      users: {
-        read: {
-          path: 'users'
-        }
+    api.namespace('users').route({
+      read: {
+        path: '/'
       }
     })
 

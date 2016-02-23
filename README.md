@@ -30,8 +30,7 @@ var API = Gangway({
 
 ```javascript
 API.route({
-  users: {
-    read: {
+    getUser: {
       method : 'GET',
       path   : '/users/{id?}' // ? indicates that the parameter is optional
     }
@@ -39,10 +38,28 @@ API.route({
 })
 ```
 
-`API.users.read()` will now perform a GET request to
+`API.getUser()` will now perform a GET request to
 `/users/{id}`. The `?` in the path option specifies that it is
 optional. This is useful when using the same route for index and show
 endpoints for resources.
+
+### Add namespaces
+
+Most APIs break down endpoints into discrete resources. Gangway
+provides a `namespace` method for this purpose. All routes will be
+prefixed with a provided URL segment:
+
+```javascript
+API.namespace('users').route({
+    read: {
+      method : 'GET',
+      path   : '{id?}' // ? indicates that the parameter is optional
+    }
+  }
+})
+```
+
+`API.users.read({ params: { id: 2 }})` will perform a GET request to `/users/2`.
 
 ### Add routes in bulk with `.resource`
 

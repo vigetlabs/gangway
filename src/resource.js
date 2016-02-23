@@ -1,29 +1,26 @@
-var assign   = require('./assign')
-var endpoint = require('./endpoint')
+var route  = require('./route')
 
 module.exports = function resource (API, name, options, nest) {
-  var child = API.namespace(name)
+  var child = API.namespace(name, options).route({
 
-  endpoint(child, {
-
-    create: assign({}, options, {
+    create: {
       method: 'POST'
-    }),
+    },
 
-    read: assign({}, options, {
+    read: {
       method: 'GET',
       path: '{id?}'
-    }),
+    },
 
-    update: assign({}, options, {
+    update: {
       method: 'PATCH',
       path: '{id}'
-    }),
+    },
 
-    destroy: assign({}, options, {
+    destroy: {
       method: 'DELETE',
       path: '{id}'
-    })
+    }
 
   })
 

@@ -16,11 +16,11 @@ describe('route', function() {
 
     var read = { path: 'users' }
 
-    route(api, { users: { read: read } })
+    route(api, { read: read })
 
     it ('extends each route with configuration settings', function() {
-      assert.equal(api.users.read.config.path, read.path)
-      assert.equal(api.users.read.config.description, api.config.description)
+      assert.equal(api.read.config.path, read.path)
+      assert.equal(api.read.config.description, api.config.description)
     })
   })
 })
