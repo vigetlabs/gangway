@@ -150,22 +150,21 @@ describe('ajax', function() {
     }).then(function () { done() }, done)
   })
 
-  context('When Promise is not defined', function () {
-
-    beforeEach(function () {
-      this.Promise = global.Promise
-      global.Promise = null
+  it ('accepts a custom Promise implimentation option', function(done) {
+    ajax({
+      Promise: {
+        resolve: function (value) {
+          assert.equal(value, 'test')
+          done()
+        }
+      },
+      mock: 'test'
     })
+  })
 
-    afterEach(function () {
-      global.Promise = this.Promise
-    })
-
-    it ('throws an error', function () {
-      assert.throws(function () {
-        return ajax({})
-      }, /Please include a Promise polyfill/)
-    })
-
+  it ('throws an error when promise is not defined', function () {
+    assert.throws(function () {
+      return ajax({ Promise: undefined })
+    }, /Please include a Promise polyfill/)
   })
 })

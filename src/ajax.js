@@ -12,7 +12,7 @@ module.exports = function AJAX (options) {
   }
 
   if ('mock' in options) {
-    return Promise.resolve(Mock(options))
+    return options.Promise.resolve(Mock(options))
   }
 
   var location = url(options.baseURL, url.resolve(options.basePath, options.path), assign({}, options.body, options.params))
@@ -25,7 +25,7 @@ module.exports = function AJAX (options) {
 
   options.beforeSend(message)
 
-  return new Promise(function(resolve, reject) {
+  return new options.Promise(function(resolve, reject) {
     message.end(function(err, response) {
       return err ? reject(options.onError(err)) : resolve(options.onResponse(response))
     })

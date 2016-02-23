@@ -8,10 +8,23 @@ opinions related to how we work.
 
 [![Circle CI](https://circleci.com/gh/vigetlabs/gangway.svg?style=svg&circle-token=d7c29c3bd61f3c3d671d1ba02841eb0c174d311a)](https://circleci.com/gh/vigetlabs/gangway)
 
-## Usage
+## Getting started
 
 Gangway is a factory function that progressively layers configuration
 options for building an AJAX request with `superagent`.
+
+All request methods return Promises. This means you'll need to include
+your own polyfill for Promise (depending on your environment). We
+recommend [`then/promise`](https://github.com/then/promise) as it
+includes additional methods like `.done()` and `.nodeify()` that
+improve interoperability and debugging:
+
+```
+require('promise/polyfill')
+// Continue with the rest of your code
+```
+
+Alternatively, provide `Promise` as a configuration option (see below).
 
 ### Create an instance of Gangway
 
@@ -105,6 +118,7 @@ beforeSend : Configure an instance of superagent before the request is sent
 onResponse : Run before resolving a request to preprocessing data
 onError    : Run before rejecting a request to preprocessing errors
 params     : Populate bindings in paths and are sent as request bodies. Defaults to body.
+Promise    : The Promise implementation. Defaults to global.Promise.
 path       : The path fragment of the endpoint, appended to baseURL
 type       : Content type, defaults to JSON
 query      : An object of query parameters. Gangway will automatically stringify this into the URL.
