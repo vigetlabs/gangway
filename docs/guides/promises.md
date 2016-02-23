@@ -2,8 +2,6 @@
 
 1. [Overview](#overview)
 2. [Promises in Gangway](#promises-in-gangway)
-3. [Using done() instead of then()](#using-done-instead-of-then)
-4. [Using nodeify for error-first callbacks](#using-nodeify-for-error-first-callbacks)
 
 ## Overview
 
@@ -14,10 +12,7 @@
 > [What is a promise?](https://www.promisejs.org#definition)
 
 For all endpoints created by Gangway, promises are returned to
-represent the
-request. [The usage of promises is well-documented](https://www.promisejs.org/),
-however in Gangway we have made some decisions that build on top of
-promises to support a better developer experience.
+represent the request.
 
 The examples for this guide will assume the following setup code:
 
@@ -33,15 +28,17 @@ API.namespace('users').route({
 
 ## Promises in Gangway
 
-Gangway uses the [then/promise](https://github.com/then/promise)
-implementation of Promises. This means that it follows the standard,
-A+ Promise specification:
-
 ```javascript
 API.users.read().then(handleSuccess, handleRejection).catch(handleError)
 ```
 
-## Using done() instead of then()
+Gangway does not include a Promise implementation, it is up to you to
+provide one. We recommended using the [then/promise](https://github.com/then/promise)
+implementation of Promises.
+
+Let's go into some reasons why.
+
+### Using done() instead of then() to prevent uncaught errors
 
 Promises are chainable. `then` can be called multiple times, layering
 on behaviors after a promise is resolved:
@@ -94,7 +91,7 @@ In a simple example, using `then` is typically fine. However the
 owness is on you to properly catch errors. `done` takes care of a lot
 of this work for you.
 
-## Using nodeify for error-first callbacks
+### Using nodeify for error-first callbacks
 
 [`then/promise`](https://github.com/then/promise) supports an
 additional set of methods: `nodeify` and `denodeify`. These methods
