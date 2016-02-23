@@ -24,11 +24,9 @@ The examples for this guide will assume the following setup code:
 ```javascript
 var API = Gangway({ baseURL: 'http://example.com' })
 
-API.route({
-  users: {
-    read: {
-      path: 'users/{id*}
-    }
+API.namespace('users').route({
+  read: {
+    path: '{id?}'
   }
 })
 ```
@@ -50,9 +48,9 @@ on behaviors after a promise is resolved:
 
 ```javascript
 API.users.read()
-          .then(doSomething)
-          .then(doSomethingElse)
-          .catch(handleError)
+         .then(doSomething)
+         .then(doSomethingElse)
+         .catch(handleError)
 ```
 
 In the code above, `read` will resolve and execute `doSomething`. Then
