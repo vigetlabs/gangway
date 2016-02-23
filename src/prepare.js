@@ -19,7 +19,8 @@ var DEFAULTS = {
   type       : 'application/json',
   beforeSend : function(ajax) { return ajax },
   onResponse : function(response) { return response.body },
-  onError    : function(error) { return error }
+  onError    : function(error) { return error },
+  Promise    : global.Promise
 }
 
 module.exports = function prepare (/* options list */) {

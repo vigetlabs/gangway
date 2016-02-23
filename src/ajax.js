@@ -1,5 +1,4 @@
 var Mock    = require('./mock')
-var Promise = require('promise')
 var Request = require('superagent')
 var prepare = require('./prepare')
 var url     = require('./url')
@@ -8,8 +7,12 @@ var assign  = require('./assign')
 module.exports = function AJAX (options) {
   options = prepare(options)
 
+  if (!options.Promise) {
+    throw TypeError('Gangway uses Promises. The current environment does not support them. Please include a Promise polyfill.')
+  }
+
   if ('mock' in options) {
-    return Mock(options)
+    return Promise.resolve(Mock(options))
   }
 
   var location = url(options.baseURL, url.resolve(options.basePath, options.path), assign({}, options.body, options.params))

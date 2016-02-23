@@ -8,7 +8,7 @@ describe('ajax', function() {
 
   before(function() {
     fauxJax.install()
-    fauxJax.on('request', function(request) {
+    fauxJax.on('request', function (request) {
       if (request.requestURL.match(/response\.json/)) {
         request.respond(200, { 'Content-Type': 'application/json' }, JSON.stringify({ "name" : "Gangway" }))
       } else {
@@ -25,10 +25,10 @@ describe('ajax', function() {
     ajax({
       baseURL : baseURL,
       path    : '/base/test/response.json'
-    }).done(function(body) {
+    }).then(function(body) {
       assert.equal(body.name, 'Gangway')
       done()
-    })
+    }).catch(done)
   })
 
   it ('automatically adds an Accept JSON header', function (done) {
@@ -46,10 +46,10 @@ describe('ajax', function() {
     ajax({
       baseURL : 'http://fizbuzz',
       mock    : 'fiz'
-    }).done(function(body) {
+    }).then(function(body) {
       assert.equal(body, 'fiz')
       done()
-    })
+    }).catch(done)
   })
 
   it ('the mocked value can be a function', function(done) {
@@ -61,40 +61,40 @@ describe('ajax', function() {
       }
     }
 
-    ajax(options).done(function(data) {
+    ajax(options).then(function(data) {
       assert.equal(data, 'yes')
       done()
-    })
+    }).catch(done)
   })
 
   it ('can override config', function(done) {
     ajax({
       baseURL : 'http://fizbuzz',
       mock    : 'fiz'
-    }).done(function(body) {
+    }).then(function(body) {
       assert.equal(body, 'fiz')
       done()
-    })
+    }).catch(done)
   })
 
   it ('can handle errors', function(done) {
     ajax({
       baseURL : baseURL,
       path    : '/asdf'
-    }).done(null, function(error) {
+    }).then(null, function(error) {
       assert.equal(error.status, 404)
       done()
-    })
+    }).catch(done)
   })
 
   it ('can operate as a promise a response', function(done) {
     ajax({
       baseURL : baseURL,
       path    : '/base/test/response.json'
-    }).done(function(data) {
+    }).then(function(data) {
       assert.equal(data.name, 'Gangway')
       done()
-    })
+    }).catch(done)
   })
 
   it ('can convert bindings using params', function(done) {
@@ -102,7 +102,7 @@ describe('ajax', function() {
       baseURL : baseURL,
       path    : '/base/test/{path}.json',
       params  : { path: 'response'}
-    }).nodeify(done)
+    }).then(function () { done() }, done)
   })
 
   it ('falls back on the `body` param if no params are given', function(done) {
@@ -110,14 +110,14 @@ describe('ajax', function() {
       baseURL : baseURL,
       path    : '/base/test/{path}.json',
       params  : { path: 'response' }
-    }).nodeify(done)
+    }).then(function () { done() }, done)
   })
 
   it ('can be converted into a node callback', function(done) {
     ajax({
       baseURL : baseURL,
       path    : '/base/test/response.json'
-    }).nodeify(done)
+    }).then(function () { done() }, done)
   })
 
   it ('can parse a response', function(done) {
@@ -127,7 +127,7 @@ describe('ajax', function() {
       onResponse: function (response) {
         assert(response instanceof superagent.Response)
       }
-    }).nodeify(done)
+    }).then(function () { done() }, done)
   })
 
   it ('can parse an error', function(done) {
@@ -138,7 +138,7 @@ describe('ajax', function() {
         assert(error instanceof Error)
         assert.equal(error.status, 404)
       }
-    }).nodeify(done)
+    }).then(function () { done() }, done)
   })
 
   it ('can preprocess a request', function(done) {
@@ -147,6 +147,25 @@ describe('ajax', function() {
       beforeSend: function (message) {
         assert(message instanceof superagent.Request)
       }
-    }).nodeify(done)
+    }).then(function () { done() }, done)
+  })
+
+  context('When Promise is not defined', function () {
+
+    beforeEach(function () {
+      this.Promise = global.Promise
+      global.Promise = null
+    })
+
+    afterEach(function () {
+      global.Promise = this.Promise
+    })
+
+    it ('throws an error', function () {
+      assert.throws(function () {
+        return ajax({})
+      }, /Please include a Promise polyfill/)
+    })
+
   })
 })

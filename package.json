@@ -19,11 +19,10 @@
     "url": "git://github.com/vigetlabs/gangway.git"
   },
   "dependencies": {
-    "promise": "~7.1",
     "superagent": "~1.7"
   },
   "devDependencies": {
-    "faux-jax": "https://github.com/algolia/faux-jax",
+    "faux-jax": "5.0.0",
     "istanbul": "0.4.2",
     "mocha": "2.4.5"
   }
