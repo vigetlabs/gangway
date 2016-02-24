@@ -2,7 +2,6 @@ var Mock    = require('./mock')
 var Request = require('superagent')
 var prepare = require('./prepare')
 var url     = require('./url')
-var assign  = require('./assign')
 
 module.exports = function AJAX (options) {
   options = prepare(options)
@@ -15,7 +14,7 @@ module.exports = function AJAX (options) {
     return options.Promise.resolve(Mock(options))
   }
 
-  var location = url(options.baseURL, url.resolve(options.basePath, options.path), assign({}, options.body, options.params))
+  var location = url(options.baseURL, url.resolve(options.basePath, options.path), options.params)
   var message  = Request(options.method, location)
 
   message.type(options.type)
