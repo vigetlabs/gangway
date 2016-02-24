@@ -127,7 +127,7 @@ describe('API()', function() {
 
     api.namespace('users').route({
       read: {
-        path: '/'
+        path: ''
       }
     })
 
