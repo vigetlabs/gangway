@@ -24,7 +24,7 @@ require('promise/polyfill')
 // Continue with the rest of your code
 ```
 
-Alternatively, provide `Promise` as a configuration option (see below).
+Alternatively, provide `Promise` as a configuration option (see below):
 
 ### Create an instance of Gangway
 
@@ -35,7 +35,8 @@ var API = Gangway({
   baseURL: 'http://example.com',
   headers: {
     'x-api-key': 'your-token-for-every-request'
-  }
+  },
+  Promise: require('promise') // Optional, if Promise is not polyfilled
 })
 ```
 
