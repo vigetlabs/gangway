@@ -18,11 +18,6 @@ function resolve (base, path) {
     base = urlRoot(base)
   }
 
-  // Normalize the base url
-  if (base.slice(-1) !== '/') {
-    base += '/'
-  }
-
   base = base.replace(trimRight, '')
   path = path.replace(trimLeft, '')
 
