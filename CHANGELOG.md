@@ -16,7 +16,7 @@
 If you are upgrading from 1.0, there are a couple of necessary
 changes:
 
-### Promises
+#### Promises
 
 If a global Promise object is not found, Gangway will throw an
 error. To eliminate this error, provide a Promise library to Gangway:
@@ -29,7 +29,7 @@ Gangway({
 })
 ```
 
-### Routes
+#### Routes
 
 The two-level approach to declaring routes has been removed. The
 following patterns should be switched out:
@@ -52,7 +52,7 @@ API.namespace('users').route{
 }}
 ```
 
-### Relative routes
+#### Relative routes
 
 Routes without a `/` at the beginning will resolve to their
 namespace. Check to ensure that your paths are resolving correctly for
