@@ -34,6 +34,5 @@ module.exports = function prepare (/* options list */) {
       query   : assign(memo.query, next.query),
       headers : assign(memo.headers, next.headers)
     }) : memo
-
   }, {})
 }

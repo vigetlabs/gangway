@@ -1,7 +1,7 @@
 var singularize = require('./singularize')
 var url = require('./url')
 
-module.exports = function segmentaize (segments) {
+module.exports = function segmentize (segments) {
 
   return segments.map(function(segment, i) {
 

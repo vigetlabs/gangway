@@ -31,6 +31,16 @@ describe('Namespace', function() {
     assert.equal(bar.toString(), '/foo/{foo_id}/bar')
   })
 
+  it ('respects baseURLs with paths', function() {
+    var api = new API({
+      baseURL: 'http://example.com/api/'
+    })
+    var foo = api.namespace('foo')
+    var bar = foo.namespace('bar')
+
+    assert.equal(bar.toString(), 'http://example.com/api/foo/{foo_id}/bar')
+  })
+
   it ('toString singularizes parameters segments', function() {
     var api = new API()
     var users = api.namespace('users')
