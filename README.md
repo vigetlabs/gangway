@@ -102,6 +102,18 @@ API.users.read({ params: { id: '10' } })
 API.comments.read({ params: { id: '2' }})
 ```
 
+### Accessing the original request object
+
+It is some times useful to access the unwrapped superagent request
+object. The value returned from endpoints contains a `request`
+property that grants access to this instance:
+
+```javascript
+let fetch = API.users.read({ params: { id: '10' } })
+
+fetch.request.abort()
+```
+
 ## Documentation
 
 Checkout the [./docs](./docs) folder and the available options

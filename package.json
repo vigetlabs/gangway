@@ -22,8 +22,8 @@
     "superagent": "~1.7"
   },
   "devDependencies": {
-    "faux-jax": "5.0.0",
-    "istanbul": "0.4.2",
+    "faux-jax": "5.0.1",
+    "istanbul": "0.4.3",
     "mocha": "2.4.5"
   }
 }
