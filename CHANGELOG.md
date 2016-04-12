@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.0
+
+- The promise returned from endpoints now exposes a `request`
+  reference point to the original superagent request
+
 ## 1.4.0
 
 - Added `Accept: "application/json" default header

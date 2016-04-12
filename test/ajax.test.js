@@ -10,7 +10,9 @@ describe('ajax', function() {
     fauxJax.install()
     fauxJax.on('request', function (request) {
       if (request.requestURL.match(/response\.json/)) {
-        request.respond(200, { 'Content-Type': 'application/json' }, JSON.stringify({ "name" : "Gangway" }))
+        setTimeout(function() {
+          request.respond(200, { 'Content-Type': 'application/json' }, JSON.stringify({ "name" : "Gangway" }))
+        }, 10)
       } else {
         request.respond(404, { 'Content-Type': 'text/plain' }, "Not found")
       }
@@ -166,5 +168,24 @@ describe('ajax', function() {
     assert.throws(function () {
       return ajax({ Promise: undefined })
     }, /Please include a Promise polyfill/)
+  })
+
+  it ('can cancel requests', function (done) {
+    var message = ajax({
+      baseURL : baseURL,
+      path    : '/base/test/response.json'
+    })
+
+    function errorOut (error, callback) {
+      done(new Error('Request should not have completed'))
+    }
+
+    message.then(errorOut, errorOut).catch(errorOut)
+
+    message.request.abort()
+
+    setTimeout(function() {
+      done()
+    }, 500)
   })
 })

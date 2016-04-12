@@ -24,9 +24,13 @@ module.exports = function AJAX (options) {
 
   options.beforeSend(message)
 
-  return new options.Promise(function(resolve, reject) {
+  var promise = new options.Promise(function(resolve, reject) {
     message.end(function(err, response) {
       return err ? reject(options.onError(err)) : resolve(options.onResponse(response))
     })
   })
+
+  promise.request = message
+
+  return promise
 }
