@@ -4,6 +4,59 @@
 
 - The promise returned from endpoints now exposes a `request`
   reference point to the original superagent request
+- Promises are not included by default. If not polyfilled,
+  use the `Promise` option to provide the Promise implementation to
+  use for Gangway.
+- `route` now operates one step shallower. See README for usage.
+- routes now respect relative URLs. Absolute urls will operate from the
+  base path.
+
+### Upgrading
+
+If you are upgrading from 1.0, there are a couple of necessary
+changes:
+
+### Promises
+
+If a global Promise object is not found, Gangway will throw an
+error. To eliminate this error, provide a Promise library to Gangway:
+
+```javascript
+var Promise = require('promise')
+
+Gangway({
+  Promise: Promise
+})
+```
+
+### Routes
+
+The two-level approach to declaring routes has been removed. The
+following patterns should be switched out:
+
+```javascript
+// OLD
+API.route({
+    users: {
+        get: {
+            path: '/users'
+        }
+    }
+})
+
+// NEW (correct)
+API.namespace('users').route{
+    get: {
+        path:'/users'
+    }
+}}
+```
+
+### Relative routes
+
+Routes without a `/` at the beginning will resolve to their
+namespace. Check to ensure that your paths are resolving correctly for
+your endpoints if you use absolute paths.
 
 ## 1.4.0
 
