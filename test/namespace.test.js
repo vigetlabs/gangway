@@ -33,7 +33,7 @@ describe('Namespace', function() {
 
   it ('respects baseURLs with paths', function() {
     var api = new API({
-      baseURL: 'http://example.com/api/'
+      baseURL: 'http://example.com/api'
     })
     var foo = api.namespace('foo')
     var bar = foo.namespace('bar')
