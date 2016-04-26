@@ -2,14 +2,17 @@
 
 ## 2.0.0
 
-- The promise returned from endpoints now exposes a `request`
-  reference point to the original superagent request
+- Endpoint invocations now return a promise-like interface with
+  `then`, `catch`, and `done` methods. `then` and `catch` return true
+  promises. The intention is to allow for access to the underlying
+  superagent request while still exposing promise functionality.
 - Promises are not included by default. If not polyfilled,
   use the `Promise` option to provide the Promise implementation to
   use for Gangway.
 - `route` now operates one step shallower. See README for usage.
 - routes now respect relative URLs. Absolute urls will operate from the
   base path.
+- Added a request timeout option. This option defaults to 15 seconds.
 
 ### Upgrading
 

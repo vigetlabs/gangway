@@ -16,6 +16,7 @@ var DEFAULTS = {
   method     : 'GET',
   path       : '',
   query      : {},
+  timeout    : 15000,
   type       : 'application/json',
   beforeSend : function(ajax) { return ajax },
   onResponse : function(response) { return response.body },

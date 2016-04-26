@@ -24,7 +24,7 @@ describe('ajax', function() {
   })
 
   it ('can send requests', function(done) {
-    ajax({
+    var promise = ajax({
       baseURL : baseURL,
       path    : '/base/test/response.json'
     }).then(function(body) {
@@ -83,7 +83,7 @@ describe('ajax', function() {
     ajax({
       baseURL : baseURL,
       path    : '/asdf'
-    }).then(null, function(error) {
+    }).then(null, function (error) {
       assert.equal(error.status, 404)
       done()
     }).catch(done)
@@ -182,7 +182,7 @@ describe('ajax', function() {
 
     message.then(errorOut, errorOut).catch(errorOut)
 
-    message.request.abort()
+    message.abort()
 
     setTimeout(function() {
       done()

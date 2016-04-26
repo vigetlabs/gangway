@@ -12,7 +12,7 @@ function API (config, routes) {
   }
 
   this.config   = prepare(config)
-  this.segments = []
+  this.segments = this.config.basePath ? [ this.config.basePath  ] : []
 
   this.route(routes)
 }

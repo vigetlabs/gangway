@@ -1,7 +1,8 @@
-var Mock    = require('./mock')
+var Mock = require('./mock')
 var Request = require('superagent')
 var prepare = require('./prepare')
-var url     = require('./url')
+var promiseDecorator = require('./promise-decorator')
+var url = require('./url')
 
 module.exports = function AJAX (options) {
   options = prepare(options)
@@ -11,7 +12,7 @@ module.exports = function AJAX (options) {
   }
 
   if ('mock' in options) {
-    return options.Promise.resolve(Mock(options))
+    return Mock(options)
   }
 
   var location = url(options.baseURL, url.resolve(options.basePath, options.path), options.params)
@@ -21,16 +22,9 @@ module.exports = function AJAX (options) {
          .send(options.body)
          .query(options.query)
          .set(options.headers)
+         .timeout(options.timeout)
 
   options.beforeSend(message)
 
-  var promise = new options.Promise(function(resolve, reject) {
-    message.end(function(err, response) {
-      return err ? reject(options.onError(err)) : resolve(options.onResponse(response))
-    })
-  })
-
-  promise.request = message
-
-  return promise
+  return promiseDecorator(message, options)
 }

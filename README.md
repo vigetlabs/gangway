@@ -135,6 +135,7 @@ Promise    : The Promise implementation. Defaults to global.Promise.
 path       : The path fragment of the endpoint, appended to baseURL
 type       : Content type, defaults to JSON
 query      : An object of query parameters. Gangway will automatically stringify this into the URL.
+timeout    : Request timeout in milliseconds. Defaults to 15 seconds.
 ```
 
 ***
