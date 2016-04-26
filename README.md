@@ -13,11 +13,13 @@ opinions related to how we work.
 Gangway is a factory function that progressively layers configuration
 options for building an AJAX request with `superagent`.
 
-All request methods return Promises. This means you'll need to include
-your own polyfill for Promise (depending on your environment). We
-recommend [`then/promise`](https://github.com/then/promise) as it
-includes additional methods like `.done()` and `.nodeify()` that
-improve interoperability and debugging:
+The returned value of all endpoints follow the Promise
+interface. Invocations of that interface return real Promises. This
+means you'll need to include your own polyfill for Promise (depending
+on your environment). We recommend
+[`then/promise`](https://github.com/then/promise) as it includes
+additional methods like `.done()` and `.nodeify()` that improve
+interoperability and debugging:
 
 ```
 require('promise/polyfill')
