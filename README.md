@@ -140,6 +140,20 @@ query      : An object of query parameters. Gangway will automatically stringify
 timeout    : Request timeout in milliseconds. Defaults to 15 seconds.
 ```
 
+### Responses
+
+Gangway wraps around superagent, leaning on it to build a response
+object. [This object is documented within superagent](https://visionmedia.github.io/superagent/#response-properties),
+however the important parts are:
+
+```javascript
+{
+  "text": "...", // The unparsed response body string
+  "body": {},    // The parsed response body
+  "status": 200  // The HTTP status code for the request
+}
+```
+
 ***
 
 <a href="http://code.viget.com">

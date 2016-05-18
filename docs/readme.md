@@ -1,5 +1,8 @@
 # Gangway Documentation
 
+1. [Guides](#guides)
+2. [API](#api)
+
 ## Guides
 
 1. [Hello, Gangway](guides/hello-gangway.md)
