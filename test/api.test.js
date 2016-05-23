@@ -119,6 +119,16 @@ describe('API()', function() {
     assert.equal(endpoints.foo.config.params.two, 2)
   })
 
+  context('When given a basePath option', function() {
+    beforeEach(function() {
+      this.api = API({ basePath: 'test' })
+    })
+
+    it ('adds that path to the segment', function() {
+      assert.deepEqual(this.api.segments, [ 'test' ])
+    })
+  })
+
   context('when a route is executed', function() {
     var api = API({
       description: 'My API',

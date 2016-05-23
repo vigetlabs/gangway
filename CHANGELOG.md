@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.0
+
+- Upgrade superagent to 1.8.x
+- Add `buildQuery` option to define custom query string behavior
+
 ## 2.0.0
 
 - Endpoint invocations now return a promise-like interface with

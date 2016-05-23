@@ -20,7 +20,7 @@ module.exports = function AJAX (options) {
 
   message.type(options.type)
          .send(options.body)
-         .query(options.query)
+         .query(options.buildQuery(options.query))
          .set(options.headers)
          .timeout(options.timeout)
 

@@ -132,6 +132,7 @@ method     : Request method (GET, POST, PUT, PATCH, DELETE, etc...)
 beforeSend : Configure an instance of superagent before the request is sent
 onResponse : Run before resolving a request to preprocessing data
 onError    : Run before rejecting a request to preprocessing errors
+buildQuery : Run before a query string stringifies.
 params     : Populate bindings in paths and are sent as request bodies. Defaults to body.
 Promise    : The Promise implementation. Defaults to global.Promise.
 path       : The path fragment of the endpoint, appended to baseURL

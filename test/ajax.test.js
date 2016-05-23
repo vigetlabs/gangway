@@ -188,4 +188,91 @@ describe('ajax', function() {
       done()
     }, 500)
   })
+
+  it ('can configure how query parameters are stringified', function () {
+    var message = ajax({
+      baseURL    : baseURL,
+      buildQuery : function (query) {
+        return 'foo=bar'
+      }
+    })
+
+    assert.deepEqual(message.qsRaw, [ 'foo=bar' ])
+  })
+
+  describe('Promise decoration', function() {
+
+    it ('can chain off of requests', function (done) {
+      var message = ajax({
+        baseURL : baseURL,
+        path    : '/base/test/response.json'
+      })
+
+      message.then(function() {
+        done()
+      })
+    })
+
+    it ('can catch rejected promises', function (done) {
+      var message = ajax({
+        baseURL : baseURL,
+        path    : '/base/test/404.json'
+      })
+
+      message.catch(function (error) {
+        done()
+      })
+    })
+
+    it ('supports the done() Promise method', function (done) {
+      var message = ajax({
+        baseURL : baseURL,
+        path    : '/base/test/response.json'
+      })
+
+      message.done(function (error) {
+        done()
+      })
+    })
+
+    context('when done() raises an error', function() {
+      beforeEach(function() {
+        this.originalTimeout = global.setTimeout
+      })
+
+      afterEach(function() {
+        global.setTimeout = this.originalTimeout
+      })
+
+      it ('done errors bubble out', function (done) {
+        var message = ajax({
+          baseURL : baseURL,
+          path    : '/base/test/response.json'
+        })
+
+        message.done(function (error) {
+          global.setTimeout = function(fn) {
+            assert.throws(fn, /This should fail/)
+            done()
+          }
+
+          throw new Error('This should fail')
+        })
+      })
+
+      it ('done errors bubble out if given no callback', function (done) {
+        var message = ajax({
+          baseURL : baseURL,
+          path    : '/base/test/response.json'
+        })
+
+        global.setTimeout = function(fn) {
+          assert.throws(fn)
+          done()
+        }
+
+        message.done()
+      })
+    })
+  })
 })
