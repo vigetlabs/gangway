@@ -19,10 +19,13 @@ module.exports = function AJAX (options) {
   var message  = Request(options.method, location)
 
   message.type(options.type)
-         .send(options.body)
          .query(options.buildQuery(options.query))
          .set(options.headers)
          .timeout(options.timeout)
+
+  if (options.body) {
+    message.send(options.body)
+  }
 
   options.beforeSend(message)
 

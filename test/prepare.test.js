@@ -8,4 +8,9 @@ describe('Prepare', function() {
     assert.equal(answer.fiz, 'buzz')
   })
 
+  it ('does not set the body to an object if not given one', function() {
+    var answer = prepare({}, undefined, { fiz: 'buzz'})
+    assert.equal(answer.body, undefined)
+  })
+
 })

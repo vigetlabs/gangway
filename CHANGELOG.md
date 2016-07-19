@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.2.0
+
+- Gangway will not send a body unless it is specified. Before this
+  version, it would default to an empty object.
+
 ## 2.1.0
 
 - Upgrade superagent to 1.8.x
