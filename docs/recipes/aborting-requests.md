@@ -13,7 +13,7 @@ var Gangway = require('gangway')
 
 var API = Gangway()
 
-API.resource(posts')
+API.resource('posts')
 
 // Let's say we have an content management app. When the admin
 // visits a post:
