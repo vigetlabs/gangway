@@ -11,6 +11,7 @@
 ## Recipes
 
 1. [Aborting requests](recipes/aborting-requests.md)
+2. [Progress](recipes/progress.md)
 
 ## API
 
