@@ -8,6 +8,10 @@
 1. [Hello, Gangway](guides/hello-gangway.md)
 2. [Working with Promises](guides/promises.md)
 
+## Recipes
+
+1. [Aborting requests](recipes/aborting-requests.md)
+
 ## API
 
 ### Available options
