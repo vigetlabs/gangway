@@ -18,7 +18,7 @@ API.resource('posts')
 var request = posts.read()
 
 request.on('progress', function (event) {
-  console.log(event.percent) // 10 (of 100)
+  console.log(event.percent)   // 10 (of 100)
   console.log(event.direction) // 'download'
 })
 ```
