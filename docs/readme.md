@@ -40,15 +40,11 @@ var Gangway = require('gangway')
 var API = Gangway()
 
 API.route({
-    users: {
-        read: {
-            path: '/users/{:id?}'
-        }
+    getUsers: {
+        path: '/users/{:id?}'
     },
-    comments: {
-        read: {
-            path: '/comments/{:id?}'
-        }
+    getComments: {
+        path: '/comments/{:id?}'
     }
 })
 ```
