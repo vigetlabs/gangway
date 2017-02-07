@@ -78,7 +78,7 @@ describe('API()', function() {
     assert.equal(endpoints.foo.config.query.two, 2)
   })
 
-  it ('folds together body params', function() {
+  it ('does not set default body params', function() {
     var endpoints = API({
       baseURL: baseURL,
       body: {
@@ -94,7 +94,7 @@ describe('API()', function() {
       }
     })
 
-    assert.equal(endpoints.foo.config.body.one, 1)
+    assert.equal(endpoints.foo.config.body.one, undefined)
     assert.equal(endpoints.foo.config.body.two, 2)
   })
 
