@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.0
+- Removes `body` from the default configuration object, and always directly 
+  sends whatever body is sent. Previously, body was expected to always be 
+  an object, and could be merged with a default. This was problematic since
+  body can be other things, such as `FormData`.
+
 ## 2.2.0
 
 - Gangway will not send a body unless it is specified. Before this
