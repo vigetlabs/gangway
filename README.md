@@ -136,7 +136,7 @@ buildQuery : Run before a query string stringifies.
 params     : Populate bindings in paths and are sent as request bodies. Defaults to body.
 Promise    : The Promise implementation. Defaults to global.Promise.
 path       : The path fragment of the endpoint, appended to baseURL
-type       : Content type, defaults to JSON
+type       : Content type
 query      : An object of query parameters. Gangway will automatically stringify this into the URL.
 timeout    : Request timeout in milliseconds. Defaults to 15 seconds.
 ```

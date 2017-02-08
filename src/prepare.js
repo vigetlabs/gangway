@@ -16,7 +16,6 @@ var DEFAULTS = {
   path       : '',
   query      : {},
   timeout    : 15000,
-  type       : 'application/json',
   buildQuery : function(query) { return query },
   beforeSend : function(ajax) { return ajax },
   onResponse : function(response) { return response.body },

@@ -18,8 +18,11 @@ module.exports = function AJAX (options) {
   var location = url(options.baseURL, url.resolve(options.basePath, options.path), options.params)
   var message  = Request(options.method, location)
 
-  message.type(options.type)
-         .query(options.buildQuery(options.query))
+  if(options.type) {
+    message.type(options.type)
+  }
+
+  message.query(options.buildQuery(options.query))
          .set(options.headers)
          .timeout(options.timeout)
 
