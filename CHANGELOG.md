@@ -5,6 +5,8 @@
   sends whatever body is sent. Previously, body was expected to always be 
   an object, and could be merged with a default. This was problematic since
   body can be other things, such as `FormData`.
+- Removes `type` from the default configuration object. This allows
+  superagent to intelligently determine a default type when none provided
 
 ## 2.2.0
 
