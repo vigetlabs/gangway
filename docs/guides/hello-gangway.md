@@ -49,7 +49,7 @@ var users = API.namespace('users')
 users.route({
   read: {
     method : 'GET',
-    path   : '{id?}
+    path   : '{id?}'
   }
 })
 ```
